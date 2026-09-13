@@ -1,728 +1,618 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XV Años - Diana Greykelly</title>
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --primary-blue: #0b2545;
-            --accent-blue: #134074;
-            --light-blue: #eef4f8;
-            --gold: #d4af37;
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --white: #ffffff;
-            --dark-text: #1d2d44;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación XV Años - Diana Greykelly</title>
+  <style>
+    :root {
+      --primary-blue: #0d233a;
+      --accent-blue: #1b4965;
+      --soft-blue: #e0f2fe;
+      --gold: #d4af37;
+      --bright-gold: #f3e5ab;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', 'Times New Roman', serif;
+    }
 
-        body {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            overflow-x: hidden;
-        }
+    body {
+      background-color: var(--primary-blue);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-        /* Ambient Balloons */
-        .balloon-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
+    /* CONTENEDOR PRINCIPAL TIPO MÓVIL */
+    .app-container {
+      width: 100%;
+      max-width: 450px;
+      height: 100vh;
+      max-height: 900px;
+      position: relative;
+      background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+      box-shadow: 0 0 30px rgba(0,0,0,0.8);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .balloon {
-            position: absolute;
-            bottom: -100px;
-            width: 30px;
-            height: 40px;
-            background: rgba(212, 175, 55, 0.4);
-            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-            animation: floatUp 12s infinite ease-in;
-        }
+    /* PANTALLA DE BIENVENIDA / SOBRE */
+    #welcome-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      background: radial-gradient(circle, #1e3a8a 0%, #0f172a 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
 
-        .balloon::before {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 13px;
-            width: 4px;
-            height: 8px;
-            background: rgba(212, 175, 55, 0.6);
-        }
+    .border-frame {
+      border: 3px solid var(--gold);
+      padding: 30px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px var(--gold), inset 0 0 15px var(--gold);
+      background: rgba(13, 35, 58, 0.85);
+      position: relative;
+      width: 90%;
+      display: flex;
+      flex-direction: flex-column;
+      align-items: center;
+    }
 
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.7; }
-            100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
-        }
+    /* Adorno floral / rosas */
+    .floral-decor {
+      font-size: 24px;
+      color: #60a5fa;
+      margin-bottom: 10px;
+    }
 
-        /* Audio Control Button */
-        .music-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 999;
-            background: var(--gold-gradient);
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .crown-icon {
+      width: 80px;
+      height: 60px;
+      margin: 10px auto;
+      background: linear-gradient(45deg, #93c5fd, #ffffff, #cbd5e1);
+      clip-path: polygon(0% 100%, 20% 30%, 40% 70%, 50% 0%, 60% 70%, 80% 30%, 100% 100%);
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+    }
 
-        /* Envelope / Hero Screen */
-        .envelope-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: radial-gradient(circle, var(--accent-blue), var(--primary-blue));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            text-align: center;
-            padding: 20px;
-            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-        }
+    .welcome-title {
+      font-size: 1.8rem;
+      color: var(--gold);
+      text-shadow: 1px 1px 3px #000;
+      margin-bottom: 5px;
+    }
 
-        .envelope-screen.open {
-            transform: translateY(-100%);
-            opacity: 0;
-            pointer-events: none;
-        }
+    .welcome-subtitle {
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
 
-        .crown-icon {
-            font-size: 4rem;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            animation: pulse 2s infinite;
-        }
+    .btn-envelope {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--bright-gold) 50%, var(--gold) 100%);
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
+    .btn-envelope:active {
+      transform: scale(0.95);
+    }
 
-        .envelope-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-        }
+    /* CONTENIDO PRINCIPAL / SECCIONES */
+    #main-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
 
-        .envelope-subtitle {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
+    #main-content.active {
+      opacity: 1;
+      pointer-events: all;
+    }
 
-        .open-btn {
-            background: var(--gold-gradient);
-            color: var(--primary-blue);
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
-            transition: transform 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* FOTO DE FONDO CON MOVIMIENTO Y GLOBOS */
+    .bg-photo-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-        .open-btn:hover {
-            transform: scale(1.05);
-        }
+    .bg-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      animation: zoomEffect 20s infinite alternate ease-in-out;
+    }
 
-        /* Main Content Container */
-        .main-container {
-            max-width: 600px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-            padding: 20px 15px 60px;
-        }
+    @keyframes zoomEffect {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.15); }
+    }
 
-        /* Photo Banner with subtle movement */
-        .photo-banner {
-            position: relative;
-            width: 100%;
-            height: 480px;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-        }
+    /* ANIMACIÓN DE GLOBOS */
+    .balloon {
+      position: absolute;
+      bottom: -50px;
+      width: 20px;
+      height: 25px;
+      background-color: rgba(147, 197, 253, 0.6);
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      animation: floatUp 8s infinite linear;
+    }
 
-        .photo-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: slowZoom 15s infinite alternate;
-        }
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(20deg); opacity: 0; }
+    }
 
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
-        }
+    /* CONTROLES SUPERIORES (MÚSICA) */
+    .top-controls {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 50;
+    }
 
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(11, 37, 69, 0.9));
-            text-align: center;
-        }
+    .music-btn {
+      background: rgba(13, 35, 58, 0.8);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
 
-        /* Countdown Timer */
-        .timer-title {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
+    /* CARRUSEL DE SECCIONES */
+    .carousel-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
 
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-        }
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
 
-        .timer-box {
-            background: rgba(11, 37, 69, 0.8);
-            border: 1px solid var(--gold);
-            padding: 8px 12px;
-            border-radius: 8px;
-            min-width: 65px;
-        }
+    .section-card {
+      min-width: 100%;
+      height: 100%;
+      scroll-snap-align: start;
+      padding: 60px 25px 40px 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow-y: auto;
+    }
 
-        .timer-box span {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--gold);
-        }
+    .card-box {
+      background: rgba(13, 35, 58, 0.85);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      margin-bottom: 15px;
+    }
 
-        .timer-box label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-        }
+    .card-box-light {
+      background: rgba(224, 242, 254, 0.9);
+      color: var(--primary-blue);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 15px;
+      width: 100%;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
 
-        /* Gold Border Card Styles */
-        .card {
-            background: rgba(19, 64, 116, 0.85);
-            border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 25px 20px;
-            margin-bottom: 25px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
-        }
+    h2 {
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
 
-        .card-light {
-            background: var(--light-blue);
-            color: var(--dark-text);
-            border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
+    p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
 
-        .card-title {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-        }
+    /* RELLENA DE CONTEO REGRESIVO */
+    .countdown-timer {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      width: 100%;
+    }
 
-        .card-light .card-title {
-            color: var(--primary-blue);
-        }
+    .time-unit {
+      background: rgba(27, 73, 101, 0.8);
+      border: 1px solid var(--gold);
+      padding: 8px;
+      border-radius: 8px;
+      min-width: 60px;
+    }
 
-        .main-msg {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            font-style: italic;
-        }
+    .time-unit span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--bright-gold);
+    }
 
-        .parents-section {
-            margin-top: 15px;
-            border-top: 1px solid rgba(212, 175, 55, 0.3);
-            padding-top: 15px;
-        }
+    .time-unit label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+    }
 
-        .parents-title {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
+    /* ITINERARIO */
+    .itinerary-list {
+      text-align: left;
+      width: 100%;
+      font-size: 0.9rem;
+    }
 
-        .parents-names {
-            font-size: 1rem;
-            line-height: 1.6;
-            font-weight: 500;
-        }
+    .itinerary-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+      padding-bottom: 4px;
+    }
 
-        /* Dress Code & Icons */
-        .dress-icons {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 15px 0;
-            font-size: 2rem;
-            color: var(--gold);
-        }
+    .itinerary-icon {
+      margin-right: 10px;
+      font-size: 1.1rem;
+    }
 
-        .color-res-btn {
-            background: transparent;
-            border: 1px solid var(--primary-blue);
-            color: var(--primary-blue);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-        }
+    /* INDICADORES Y FLECHAS DE NAVEGACIÓN */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      background: rgba(212, 175, 55, 0.3);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
 
-        .color-res-btn:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
+    .nav-arrow.right { right: 10px; }
+    .nav-arrow.left { left: 10px; }
 
-        /* Itinerary List */
-        .itinerary-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-align: left;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
-        }
+    .btn-action {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--bright-gold) 100%);
+      color: var(--primary-blue);
+      border: none;
+      padding: 10px 20px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 10px;
+    }
 
-        .itinerary-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
+    /* MODAL */
+    .modal {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-        .itinerary-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gold-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-blue);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
+    .modal-content {
+      background: var(--primary-blue);
+      border: 2px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      max-width: 300px;
+    }
 
-        .itinerary-text strong {
-            display: block;
-            color: var(--gold);
-            font-size: 0.9rem;
-        }
-
-        .itinerary-text span {
-            font-size: 0.95rem;
-        }
-
-        /* Action Buttons */
-        .btn-action {
-            background: #25d366;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 25px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-
-        /* Custom Pass Section */
-        .pass-input {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border-radius: 8px;
-            border: 1px solid var(--gold);
-            background: rgba(255, 255, 255, 0.9);
-            color: var(--dark-text);
-            font-size: 0.95rem;
-        }
-
-        .pass-ticket {
-            background: var(--gold-gradient);
-            color: var(--primary-blue);
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-align: center;
-        }
-
-        .pass-ticket h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            border-bottom: 1px solid var(--primary-blue);
-            padding-bottom: 5px;
-            margin-bottom: 10px;
-        }
-
-        /* Modal Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: var(--primary-blue);
-            border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 25px;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            color: var(--gold);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .footer-msg {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--gold);
-            margin-top: 30px;
-        }
-    </style>
+    .close-btn {
+      margin-top: 15px;
+      background: var(--gold);
+      color: var(--primary-blue);
+      border: none;
+      padding: 5px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Ambient Floating Balloons -->
-    <div class="balloon-container" id="balloonContainer"></div>
-
-    <!-- Audio Element & Control -->
-    <audio id="bgMusic" loop>
-        <source src="musica.mp3" type="audio/mpeg">
+  <div class="app-container">
+    <!-- AUDIO DE FONDO -->
+    <audio id="bg-music" loop>
+      <source src="musica.mp3" type="audio/mpeg">
     </audio>
-    <button class="music-btn" id="musicToggle" style="display: none;" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
-    </button>
 
-    <!-- Cover / Envelope Screen -->
-    <div class="envelope-screen" id="envelopeScreen">
-        <i class="fas fa-crown crown-icon"></i>
-        <h1 class="envelope-title">Diana Greykelly</h1>
-        <p class="envelope-subtitle">Invitación a mis XV Años</p>
-        <button class="open-btn" onclick="openInvitation()">
-            <i class="fas fa-envelope-open"></i> Tocar para abrir
-        </button>
+    <!-- PANTALLA DE BIENVENIDA (SOBRE) -->
+    <div id="welcome-screen">
+      <div class="border-frame">
+        <div class="floral-decor">❀ ✿ ❀</div>
+        <div class="crown-icon"></div>
+        <h1 class="welcome-title">Diana Greykelly</h1>
+        <p class="welcome-subtitle">Invitación a mis XV Años</p>
+        <button class="btn-envelope" onclick="openInvitation()">✉ Tocar para abrir</button>
+      </div>
     </div>
 
-    <!-- Main Invitation Content -->
-    <div class="main-container">
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content">
+      <!-- FOTO DE FONDO CON MOVIMIENTO -->
+      <div class="bg-photo-container">
+        <!-- Reemplazar 'foto_diana.jpg' por la ruta real de la imagen -->
+        <img src="diana.jpg" alt="Diana Greykelly" class="bg-photo">
+        <div id="balloons-container"></div>
+      </div>
 
-        <!-- Photo Banner with Countdown -->
-        <div class="photo-banner">
-            <img src="diana.jpg" alt="Diana Greykelly" onerror="this.src='https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=600'">
-            <div class="photo-overlay">
-                <div class="timer-title">24 de Octubre de 2026</div>
-                <div class="timer">
-                    <div class="timer-box"><span id="days">00</span><label>Días</label></div>
-                    <div class="timer-box"><span id="hours">00</span><label>Horas</label></div>
-                    <div class="timer-box"><span id="minutes">00</span><label>Min</label></div>
-                    <div class="timer-box"><span id="seconds">00</span><label>Seg</label></div>
-                </div>
+      <!-- BOTÓN DE MÚSICA -->
+      <div class="top-controls">
+        <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
+      </div>
+
+      <!-- FLECHAS NAVEGACIÓN -->
+      <div class="nav-arrow left" onclick="scrollCarousel(-1)">❮</div>
+      <div class="nav-arrow right" onclick="scrollCarousel(1)">❯</div>
+
+      <!-- CARRUSEL DE SECCIONES -->
+      <div class="carousel-container" id="carousel">
+
+        <!-- SECCIÓN 1: BIENVENIDA Y RECUENTO -->
+        <div class="section-card">
+          <div class="card-box">
+            <h2>XV Años de Diana</h2>
+            <p>24 - 10 - 2026</p>
+            <div class="countdown-timer">
+              <div class="time-unit"><span id="days">00</span><label>Días</label></div>
+              <div class="time-unit"><span id="hours">00</span><label>Horas</label></div>
+              <div class="time-unit"><span id="minutes">00</span><label>Min</label></div>
+              <div class="time-unit"><span id="seconds">00</span><label>Seg</label></div>
             </div>
+          </div>
+          <div class="card-box">
+            <p>Gran suceso en la Familia Antunez - Monagas el florecer de una nueva dama con la bendición del universo y de mis padres te invito a celebrar este día tan especial en mi vida. Con mucho cariño y alegría, quiero compartir contigo este momento único que marca el inicio de una nueva etapa en mi vida.</p>
+          </div>
         </div>
 
-        <!-- Main Message Card -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-gem"></i> Mi Celebración</h2>
-            <p class="main-msg">
-                "Gran suceso en la Familia Antunez-Monagas: el florecer de una nueva dama con la bendición del universo y de mis padres te invito a celebrar este día tan especial en mi vida. Con mucho cariño y alegría, quiero compartir contigo este momento único que marca el inicio de una nueva etapa en mi vida."
-            </p>
-            <div class="parents-section">
-                <div class="parents-title">Mis devotos padres:</div>
-                <div class="parents-names">
-                    Lady Gipsy Monagas<br>
-                    Lord Hugo Antunez
-                </div>
-            </div>
+        <!-- SECCIÓN 2: PADRES Y AGRADECIMIENTO -->
+        <div class="section-card">
+          <div class="card-box">
+            <h2>Mis devotos padres</h2>
+            <p><strong>Lady Gipsy Monagas</strong></p>
+            <p><strong>Lord Hugo Antunez</strong></p>
+          </div>
+          <div class="card-box">
+            <p>"Nada en este mundo podría agradecer lo suficiente todo lo que han hecho por mí. Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro mis XV Años con la mayor gratitud por tenerlos en mi vida."</p>
+          </div>
         </div>
 
-        <!-- Gratitude Card -->
-        <div class="card">
-            <p class="main-msg">
-                "Nada en este mundo podría agradecer lo suficiente todo lo que han hecho por mí. Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro mis XV Años con la mayor gratitud por tenerlos en mi vida."
-            </p>
+        <!-- SECCIÓN 3: DRESS CODE Y COLORES RESERVADOS -->
+        <div class="section-card">
+          <div class="card-box">
+            <h2>Código de Vestimenta</h2>
+            <p>👔👗 <strong>SemiFormal</strong></p>
+          </div>
+          <div class="card-box-light" onclick="openModal()">
+            <p style="font-weight: bold; margin:0;">🎨 Colores reservados</p>
+            <p style="font-size:0.8rem; margin:0;">(Tocar para consultar)</p>
+          </div>
         </div>
 
-        <!-- Dress Code Card -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-user-tie"></i> Código de Vestimenta</h2>
-            <p style="font-size: 1.1rem; font-weight: 600;">SemiFormal</p>
-            <div class="dress-icons">
-                <i class="fas fa-vest" title="Caballeros"></i>
-                <i class="fas fa-female" title="Damas"></i>
+        <!-- SECCIÓN 4: REGALOS E ITINERARIO -->
+        <div class="section-card">
+          <div class="card-box">
+            <h2>Mesa de Regalos</h2>
+            <p>✉️ El regalo es opcional, tu presencia es obligatoria. Pero si gustas hacerme un presente, se agradecerá que sea en efectivo a través de lluvia de sobres, gracias.</p>
+          </div>
+          <div class="card-box">
+            <h2>Itinerario</h2>
+            <div class="itinerary-list">
+              <div class="itinerary-item"><span class="itinerary-icon">🍸</span> Recepción de invitados 7:00 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">👑</span> Entrada de la quinceañera 8:00 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">💃</span> Vals con sus Padres 8:05 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🌹</span> Vals de las rosas con sus invitados 8:11 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🥂</span> Brindis 8:18 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">📸</span> Sesión de fotos 8:25 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🎂</span> Cumpleaños 8:55 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🍽️</span> Cena con los invitados 9:00 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🎉</span> A disfrutar de la fiesta 9:30 Pm.</div>
+              <div class="itinerary-item"><span class="itinerary-icon">🍰</span> Entrega de torta y agradecimiento.</div>
             </div>
+          </div>
         </div>
 
-        <!-- Reserved Colors Card (Light Blue) -->
-        <div class="card-light">
-            <h3 style="font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-blue);">Colores Reservados</h3>
-            <p style="font-size: 0.9rem; margin-top: 5px;">Información sobre el vestuario</p>
-            <button class="color-res-btn" onclick="openModal()">Tocar para ver detalles</button>
+        <!-- SECCIÓN 5: UBICACIÓN Y CONFIRMACIÓN -->
+        <div class="section-card">
+          <div class="card-box">
+            <h2>Dirección</h2>
+            <p>📍 Parroquia Antímano.</p>
+            <p>Salón de eventos.</p>
+            <p>Calle El Algodonal, Sector Patria Eterna (antes de entrar al hospital José Ignacio Baldó).</p>
+          </div>
+          
+          <!-- PASE PERSONALIZADO -->
+          <div class="card-box">
+            <h2>Pase Personalizado</h2>
+            <p>Invitado(a): <strong id="guest-name" style="color: var(--bright-gold);">Familia / Invitado</strong></p>
+            <p>Pases asignados: <strong id="guest-passes" style="color: var(--bright-gold);">1</strong></p>
+          </div>
+
+          <div class="card-box">
+            <h2>Reservar</h2>
+            <p>Por favor confirma tu asistencia antes del 10 de octubre para ayudarnos con la organización.</p>
+            <a id="whatsapp-btn" class="btn-action" href="#" target="_blank">Confirmar asistencia</a>
+            <p style="margin-top: 15px; font-weight: bold; color: var(--gold);">¡Te esperamos!</p>
+          </div>
         </div>
 
-        <!-- Gift Table Card -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-gift"></i> Mesa de Regalos</h2>
-            <p class="main-msg">
-                "El regalo es opcional, tu presencia es obligatoria. Pero si gustas hacerme un presente, se agradecerá que sea en efectivo a través de lluvia de sobres. ¡Gracias!"
-            </p>
-        </div>
-
-        <!-- Itinerary Card -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-clock"></i> Itinerario</h2>
-            
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-door-open"></i></div>
-                <div class="itinerary-text"><strong>7:00 PM</strong><span>Recepción de invitados</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-crown"></i></div>
-                <div class="itinerary-text"><strong>8:00 PM</strong><span>Entrada de la quinceañera</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-music"></i></div>
-                <div class="itinerary-text"><strong>8:05 PM</strong><span>Vals con sus Padres</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-rose"></i></div>
-                <div class="itinerary-text"><strong>8:11 PM</strong><span>Vals de las rosas con sus invitados</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-glass-cheers"></i></div>
-                <div class="itinerary-text"><strong>8:18 PM</strong><span>Brindis</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-camera"></i></div>
-                <div class="itinerary-text"><strong>8:25 PM</strong><span>Sesión de fotos</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-birthday-cake"></i></div>
-                <div class="itinerary-text"><strong>8:55 PM</strong><span>Cumpleaños</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-utensils"></i></div>
-                <div class="itinerary-text"><strong>9:00 PM</strong><span>Cena con los invitados</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-dancing"></i></div>
-                <div class="itinerary-text"><strong>9:30 PM</strong><span>A disfrutar de la fiesta</span></div>
-            </div>
-            <div class="itinerary-item">
-                <div class="itinerary-icon"><i class="fas fa-heart"></i></div>
-                <div class="itinerary-text"><strong>Cierre</strong><span>Entrega de torta y agradecimiento</span></div>
-            </div>
-        </div>
-
-        <!-- Location Card -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-map-marker-alt"></i> Ubicación</h2>
-            <p style="line-height: 1.6;">
-                <strong>Parroquia Antímano</strong><br>
-                Salón de Eventos<br>
-                Calle el Algodonal, Sector Patria Eterna<br>
-                <em>(Antes de entrar al hospital José Ignacio Baldó)</em>
-            </p>
-        </div>
-
-        <!-- RSVP / WhatsApp Confirmation -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-calendar-check"></i> Reservar</h2>
-            <p style="font-size: 0.95rem; margin-bottom: 15px;">
-                Por favor confirma tu asistencia antes del <strong>10 de octubre</strong> para ayudarnos con la organización.
-            </p>
-            <a href="https://api.whatsapp.com/send?phone=&text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%2015%20Años%20de%20Diana%20Greykelly." target="_blank" class="btn-action">
-                <i class="fab fa-whatsapp"></i> Confirmar asistencia
-            </a>
-        </div>
-
-        <!-- Custom Pass Section -->
-        <div class="card">
-            <h2 class="card-title"><i class="fas fa-ticket-alt"></i> Pase Personalizado</h2>
-            <p style="font-size: 0.9rem; margin-bottom: 10px;">Ingresa tus datos para generar tu pase digital:</p>
-            
-            <input type="text" id="guestName" class="pass-input" placeholder="Nombre del Invitado(a)" oninput="updatePass()">
-            <input type="number" id="guestCount" class="pass-input" placeholder="N° de Acompañantes" min="0" value="1" oninput="updatePass()">
-
-            <div class="pass-ticket">
-                <h4>Pase de Entrada</h4>
-                <p><strong>Invitado(a):</strong> <span id="passName">Nombre Apellido</span></p>
-                <p><strong>Pases válidos:</strong> <span id="passCount">1</span> persona(s)</p>
-            </div>
-        </div>
-
-        <div class="footer-msg">
-            ¡Te esperamos!
-        </div>
-
+      </div>
     </div>
 
-    <!-- Reserved Colors Modal -->
-    <div class="modal" id="colorModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
-            <h3 style="font-family: 'Cinzel', serif; color: var(--gold); margin-bottom: 15px;">Colores Reservados</h3>
-            <p style="line-height: 1.6; font-size: 0.95rem;">
-                Con mucho cariño se reservan los colores <strong>azules y grises</strong>, son exclusivos de la quinceañera. ¡Gracias por tu comprensión!
-            </p>
-        </div>
+    <!-- MODAL COLORES RESERVADOS -->
+    <div id="color-modal" class="modal">
+      <div class="modal-content">
+        <h2>Colores Reservados</h2>
+        <p>Con mucho cariño se reservan los colores azules y grises, son exclusivos de la quinceañera. ¡Gracias!</p>
+        <button class="close-btn" onclick="closeModal()">Cerrar</button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        // Open Envelope & Play Music
-        function openInvitation() {
-            document.getElementById('envelopeScreen').classList.add('open');
-            document.getElementById('musicToggle').style.display = 'flex';
-            var audio = document.getElementById('bgMusic');
-            audio.play().catch(function(error) {
-                console.log("Audio autoplay prevented");
-            });
-        }
+  <script>
+    // PARAMETROS URL PARA PERSONALIZAR CADA INVITADO
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('nombre') || 'Estimado Invitado';
+    const guestPasses = urlParams.get('pases') || '1';
 
-        // Toggle Music Play/Pause
-        var isPlaying = true;
-        function toggleMusic() {
-            var audio = document.getElementById('bgMusic');
-            var btn = document.getElementById('musicToggle');
-            if (isPlaying) {
-                audio.pause();
-                btn.innerHTML = '<i class="fas fa-music-slash"></i>';
-            } else {
-                audio.play();
-                btn.innerHTML = '<i class="fas fa-music"></i>';
-            }
-            isPlaying = !isPlaying;
-        }
+    document.getElementById('guest-name').innerText = guestName;
+    document.getElementById('guest-passes').innerText = guestPasses;
 
-        // Countdown Timer
-        const eventDate = new Date('October 24, 2026 19:00:00').getTime();
-        
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const difference = eventDate - now;
+    // BOTÓN DE WHATSAPP CON MENSAJE DINÁMICO
+    const phone = "584000000000"; // Reemplazar con el número de teléfono deseado
+    const message = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Diana Greykelly. Soy ${guestName} y asistiré con ${guestPasses} pase(s).`);
+    document.getElementById('whatsapp-btn').href = `https://api.whatsapp.com/send?phone=${phone}&text=${message}`;
 
-            if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    // ABRIR INVITACIÓN
+    const music = document.getElementById('bg-music');
+    let isPlaying = false;
 
-                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-            }
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+    function openInvitation() {
+      document.getElementById('welcome-screen').style.transform = 'translateY(-100%)';
+      document.getElementById('main-content').classList.add('active');
+      
+      // Reproducir audio
+      music.play().then(() => {
+        isPlaying = true;
+      }).catch(err => console.log("Auto-play prevenido por el navegador"));
 
-        // Dynamic Pass Generator
-        function updatePass() {
-            const name = document.getElementById('guestName').value;
-            const count = document.getElementById('guestCount').value;
-            
-            document.getElementById('passName').innerText = name.trim() !== "" ? name : "Nombre Apellido";
-            document.getElementById('passCount').innerText = count !== "" ? count : "1";
-        }
+      createBalloons();
+    }
 
-        // Modal Logic
-        function openModal() {
-            document.getElementById('colorModal').style.display = 'flex';
-        }
+    // CONTROL DE MÚSICA
+    function toggleMusic() {
+      const musicBtn = document.getElementById('music-toggle');
+      if (isPlaying) {
+        music.pause();
+        musicBtn.innerText = '🔇';
+        isPlaying = false;
+      } else {
+        music.play();
+        musicBtn.innerText = '🎵';
+        isPlaying = true;
+      }
+    }
 
-        function closeModal() {
-            document.getElementById('colorModal').style.display = 'none';
-        }
+    // NAVEGACIÓN EN CARRUSEL
+    function scrollCarousel(direction) {
+      const carousel = document.getElementById('carousel');
+      const width = carousel.offsetWidth;
+      carousel.scrollBy({ left: width * direction, behavior: 'smooth' });
+    }
 
-        // Floating Balloons Generator
-        const balloonContainer = document.getElementById('balloonContainer');
-        function createBalloon() {
-            const balloon = document.createElement('div');
-            balloon.classList.add('balloon');
-            balloon.style.left = Math.random() * 100 + 'vw';
-            balloon.style.animationDuration = (Math.random() * 6 + 8) + 's';
-            balloonContainer.appendChild(balloon);
+    // GENERAR GLOBOS
+    function createBalloons() {
+      const container = document.getElementById('balloons-container');
+      for (let i = 0; i < 12; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.style.left = `${Math.random() * 90}%`;
+        balloon.style.animationDelay = `${Math.random() * 5}s`;
+        balloon.style.animationDuration = `${6 + Math.random() * 4}s`;
+        container.appendChild(balloon);
+      }
+    }
 
-            setTimeout(() => {
-                balloon.remove();
-            }, 14000);
-        }
-        setInterval(createBalloon, 1500);
-    </script>
+    // CONTEO REGRESIVO (24 de Octubre de 2026)
+    const targetDate = new Date("Oct 24, 2026 20:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance > 0) {
+        document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+
+    // MODAL COLORES
+    function openModal() {
+      document.getElementById('color-modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('color-modal').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
+
