@@ -1,513 +1,540 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Invitación a mis XV Años - Diana Greykelly</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #0b1d3a;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-    
-    /* ENVOLTORIO SOBRE / PORTADA */
-    #envelope-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(135deg, #071226 0%, #112d59 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      text-align: center;
-      padding: 20px;
-      transition: opacity 1s ease, visibility 1s;
-    }
-    .glitter-frame {
-      border: 3px solid #d4af37;
-      box-shadow: 0 0 15px #d4af37, inset 0 0 15px #d4af37;
-      padding: 30px 20px;
-      border-radius: 15px;
-      background: rgba(11, 29, 58, 0.85);
-      max-width: 400px;
-      width: 100%;
-      position: relative;
-    }
-    .crown-icon {
-      font-size: 50px;
-      color: #d4af37;
-      text-shadow: 0 0 10px #70a1ff, 0 0 20px #ffffff;
-      margin-bottom: 10px;
-    }
-    .title-cover {
-      font-family: 'Cinzel', serif;
-      font-size: 24px;
-      color: #ffd700;
-      margin-bottom: 5px;
-    }
-    .subtitle-cover {
-      font-family: 'Great Vibes', cursive;
-      font-size: 36px;
-      color: #ffffff;
-      margin-bottom: 25px;
-    }
-    .open-btn {
-      background: linear-gradient(45deg, #1e3c72, #2a5298);
-      border: 2px solid #d4af37;
-      color: #ffd700;
-      padding: 12px 30px;
-      font-size: 16px;
-      font-family: 'Cinzel', serif;
-      border-radius: 25px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .open-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.7);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación XV Años - Diana Greykelly</title>
+    <style>
+        :root {
+            --azul-oscuro: #0a192f;
+            --azul-tarjeta: #112240;
+            --azul-claro: #203a43;
+            --dorado: #d4af37;
+            --dorado-brillo: #f3e5ab;
+            --blanco: #ffffff;
+        }
 
-    /* CONTENIDO PRINCIPAL DE LA INVITACIÓN */
-    #main-content {
-      display: none;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
+        }
 
-    /* SECCIÓN PRINCIPAL CON FOTO Y GLOBOS */
-    .hero-section {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 30px 12px;
-      background-image: url('diana.jpg'); /* Imagen de Diana */
-      background-size: cover;
-      background-position: center;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero-overlay {
-      position: absolute;
-      top: 50; left: 50; right: 50; bottom: 50;
-      background: linear-gradient(to bottom, rgba(11,29,58,0.4) 0%, rgba(11,29,58,0.85) 100%);
-      z-index: 1;
-    }
-    .hero-content {
-      position: lower;
-      z-index: 2;
-      margin-top: 10px;
-    }
-    .hero-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 55px;
-      color: #ffd700;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
-    }
-    .hero-date {
-      font-family: 'Cinzel', serif;
-      font-size: 20px;
-      letter-spacing: 2px;
-      margin-top: 10px;
-    }
+        body {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            overflow-x: hidden;
+        }
 
-    /* BOTÓN DE MÚSICA */
-    .music-control {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 1001;
-      background: rgba(11, 29, 58, 0.8);
-      border: 1px solid #d4af37;
-      color: #ffd700;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
+        /* Pantalla de Portada */
+        #portada {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #0b1d3a, #020c1b);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+        }
 
-    /* GLOBOS FLOTANTES */
-    .balloon {
-      position: absolute;
-      bottom: -100px;
-      width: 30px;
-      height: 40px;
-      background: rgba(112, 161, 255, 0.7);
-      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-      z-index: 2;
-      animation: floatUp 8s infinite linear;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
-    }
+        .portada-box {
+            border: 2px solid var(--dorado);
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
 
-    /* CONTEO REGRESIVO */
-    .countdown-container {
-      position: lower;
-      z-index: 2;
-      display: flex;
-      gap: 15px;
-      margin: 20px 0;
-    }
-    .time-box {
-      background: rgba(7, 18, 38, 0.8);
-      border: 1px solid #d4af37;
-      padding: 10px;
-      border-radius: 8px;
-      min-width: 65px;
-    }
-    .time-box span {
-      display: block;
-      font-size: 22px;
-      font-weight: bold;
-      color: #ffd700;
-    }
-    .time-box label {
-      font-size: 10px;
-      text-transform: uppercase;
-    }
+        .portada-box h2 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--dorado-brillo);
+            margin-bottom: 10px;
+        }
 
-    .swipe-indicator {
-      position: relative;
-      z-index: 2;
-      font-size: 14px;
-      color: #d4af37;
-      animation: bounce 2s infinite;
-      margin-bottom: 10px;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-10px);}
-      60% {transform: translateY(-5px);}
-    }
+        .portada-box h1 {
+            font-size: 2.5rem;
+            color: var(--dorado);
+            margin-bottom: 15px;
+            font-family: 'Brush Script MT', cursive, serif;
+        }
 
-    /* TARJETAS DE CONTENIDO */
-    .section-card {
-      background: #0d2347;
-      border: 2px solid #d4af37;
-      border-radius: 12px;
-      padding: 25px 20px;
-      margin: 30px 15px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-    .section-title {
-      font-family: 'Cinzel', serif;
-      color: #ffd700;
-      font-size: 20px;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
-    .card-text {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #e0e0e0;
-    }
+        .btn-abrir {
+            margin-top: 25px;
+            background: transparent;
+            color: var(--dorado);
+            border: 2px solid var(--dorado);
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
 
-    /* COLORES RESERVADOS DESPLEGABLE */
-    .reserved-colors-btn {
-      background: #87ceeb;
-      color: #0b1d3a;
-      border: 2px solid #d4af37;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      margin-top: 15px;
-      display: inline-block;
-    }
-    .reserved-colors-info {
-      display: none;
-      background: rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 13px;
-    }
+        .btn-abrir:hover {
+            background: var(--dorado);
+            color: var(--azul-oscuro);
+        }
 
-    /* ITINERARIO */
-    .itinerary-list {
-      list-style: none;
-      text-align: left;
-      max-width: 300px;
-      margin: 0 auto;
-    }
-    .itinerary-item {
-      padding: 8px 0;
-      border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
-      display: flex;
-      justify-content: space-between;
-      font-size: 14px;
-    }
+        /* Control de Audio */
+        .audio-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 90;
+            background: var(--azul-tarjeta);
+            border: 2px solid var(--dorado);
+            color: var(--dorado);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
 
-    /* BOTÓN WHATSAPP */
-    .whatsapp-btn {
-      background-color: #25d366;
-      color: white;
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 15px;
-      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-    }
+        /* Contenido Principal */
+        #contenido {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-    /* PASE PERSONALIZADO */
-    .pass-card {
-      background: linear-gradient(135deg, #112d59 0%, #071226 100%);
-      border: 2px dashed #d4af37;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 15px;
-    }
-    .guest-name {
-      font-size: 22px;
-      color: #ffd700;
-      font-family: 'Cinzel', serif;
-      margin: 10px 0;
-    }
-    .pass-count {
-      font-size: 16px;
-      color: #ffffff;
-    }
-  </style>
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-align: center;
+            padding: 30px 20px;
+            background: url('diana.jpg') center/cover no-repeat;
+            animation: leveMovimiento 18s infinite alternate ease-in-out;
+        }
+
+        @keyframes leveMovimiento {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(10,25,47,0.3), rgba(10,25,47,0.85));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            color: var(--dorado);
+            margin-bottom: 5px;
+        }
+
+        .hero-date {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Cuenta Regresiva */
+        .countdown {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .time-box {
+            background: rgba(17, 34, 64, 0.85);
+            border: 1px solid var(--dorado);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 65px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--dorado-brillo);
+        }
+
+        .time-box label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .indicador-deslizar {
+            font-size: 0.9rem;
+            color: var(--dorado);
+            animation: rebotar 2s infinite;
+        }
+
+        @keyframes rebotar {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        /* Globos flotantes */
+        .globo {
+            position: fixed;
+            bottom: -50px;
+            background-color: rgba(212, 175, 55, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: subir 8s infinite ease-in;
+        }
+
+        @keyframes subir {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+        }
+
+        /* Secciones */
+        .seccion {
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tarjeta {
+            background: var(--azul-tarjeta);
+            border: 2px solid var(--dorado);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .tarjeta-clara {
+            background: var(--azul-claro);
+            border: 2px solid var(--dorado);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .titulo-tarjeta {
+            color: var(--dorado);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .texto-mensaje {
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .padres-list {
+            list-style: none;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: var(--dorado-brillo);
+        }
+
+        .padres-list li {
+            margin: 5px 0;
+        }
+
+        /* Desplegable Colores */
+        .acordeon-btn {
+            background: var(--azul-claro);
+            color: var(--dorado);
+            border: 1px solid var(--dorado);
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .acordeon-contenido {
+            display: none;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 0 0 8px 8px;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        /* Itinerario */
+        .itinerario-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .itinerario-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Botón Confirmar */
+        .btn-whatsapp {
+            display: inline-block;
+            background: #25D366;
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+        }
+
+        .pase-box {
+            border: 2px dashed var(--dorado);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .pase-nombre {
+            font-size: 1.2rem;
+            color: var(--dorado-brillo);
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- REPRODUCTOR DE AUDIO -->
-  <audio id="bg-music" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
-  
-  <button class="music-control" id="music-btn" onclick="toggleMusic()" style="display:none;">🔊</button>
+    <!-- Audio de Fondo (Reemplazar audio.mp3 por la ruta correcta) -->
+    <audio id="musicaFondo" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
 
-  <!-- PANTALLA SOBRE (PORTADA) -->
-  <div id="envelope-screen">
-    <div class="glitter-frame">
-      <div class="crown-icon">👑</div>
-      <div class="title-cover">Diana Greykelly</div>
-      <div class="subtitle-cover">Invitación a mis XV Años</div>
-      <button class="open-btn" onclick="openInvitation()">✉️ Tocar para abrir</button>
-    </div>
-  </div>
+    <button class="audio-control" id="btnAudio" onclick="toggleAudio()" style="display:none;">🎵</button>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <div id="main-content">
-    
-    <!-- HERO SECTION / FOTO E INTERACCIÓN -->
-    <section class="hero-section">
-      <div class="hero-overlay"></div>
-      
-      <!-- GLOBOS DINÁMICOS -->
-      <div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
-      <div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
-      <div class="balloon" style="left: 60%; animation-delay: 4s;"></div>
-      <div class="balloon" style="left: 80%; animation-delay: 1s;"></div>
-
-      <div class="hero-content">
-        <h1 class="hero-title">Diana Greykelly</h1>
-        <p style="letter-spacing: 3px; color: #d4af37;">MIS XV AÑOS</p>
-        <p class="hero-date">24 · 10 · 2026</p>
-      </div>
-
-      <!-- CONTEO REGRESIVO -->
-      <div class="countdown-container">
-        <div class="time-box"><span id="days">00</span><label>Días</label></div>
-        <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
-        <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
-        <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
-      </div>
-
-      <div class="swipe-indicator">
-        Desliza hacia abajo para continuar ➔
-      </div>
-    </section>
-
-    <!-- MENSAJE PRINCIPAL -->
-    <div class="section-card">
-      <h2 class="section-title">Gran Suceso</h2>
-      <p class="card-text">
-        Gran suceso en la Familia Antunez-Monagas: el florecer de una nueva dama con la bendición del universo y de mis padres te invito a celebrar este día tan especial en mi vida. Con mucho cariño y alegría, quiero compartir contigo este momento único que marca el inicio de una nueva etapa en mi vida.
-      </p>
+    <!-- Portada Inicial -->
+    <div id="portada">
+        <div class="portada-box">
+            <h2>INVITACIÓN ESPECIAL</h2>
+            <h1>Diana Greykelly</h1>
+            <p style="color: var(--dorado-brillo); letter-spacing: 2px;">INVITACIÓN A MIS XV AÑOS</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">24 DE OCTUBRE DE 2026</p>
+            <button class="btn-abrir" onclick="abrirInvitacion()">TOCAR PARA ABRIR</button>
+        </div>
     </div>
 
-    <!-- PADRES -->
-    <div class="section-card">
-      <h2 class="section-title">Mis Devotos Padres</h2>
-      <p class="card-text" style="font-size: 18px; color: #ffd700;">
-        Lady Gipsy Monagas<br>
-        Lord Hugo Antunez
-      </p>
-      <br>
-      <p class="card-text">
-        "Nada en este mundo podría agradecer lo suficiente todo lo que han hecho por mí. Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro mis XV Años con la mayor gratitud por tenerlos en mi vida."
-      </p>
+    <!-- Contenido Invitación -->
+    <div id="contenido">
+        
+        <!-- Hero con foto e interacción -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p style="letter-spacing: 3px; color: var(--dorado-brillo);">MIS XV AÑOS</p>
+                <h1 class="hero-title">Diana Greykelly</h1>
+                <p class="hero-date">24.10.2026</p>
+
+                <!-- Conteo Regresivo -->
+                <div class="countdown">
+                    <div class="time-box"><span id="dias">00</span><label>Días</label></div>
+                    <div class="time-box"><span id="horas">00</span><label>Horas</label></div>
+                    <div class="time-box"><span id="minutos">00</span><label>Min</label></div>
+                    <div class="time-box"><span id="segundos">00</span><label>Seg</label></div>
+                </div>
+
+                <div class="indicador-deslizar">
+                    Desliza hacia abajo para continuar ➔
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion">
+            
+            <!-- Mensaje Principal -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Gran Suceso</h2>
+                <p class="texto-mensaje">
+                    Gran suceso en la Familia Antunez-Monagas el florecer de una nueva dama con la bendición del universo y de mis padres te invito a celebrar este día tan especial en mi vida. Con mucho cariño y alegría, quiero compartir contigo este momento único que marca el inicio de una nueva etapa en mi vida.
+                </p>
+            </div>
+
+            <!-- Padres -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Mis devotos padres</h2>
+                <ul class="padres-list">
+                    <li>Lady Gipsy Monagas</li>
+                    <li>Lord Hugo Antunez</li>
+                </ul>
+            </div>
+
+            <!-- Agradecimiento a Padres -->
+            <div class="tarjeta">
+                <p class="texto-mensaje">
+                    "Nada en este mundo podría agradecer lo suficiente todo lo que han hecho por mí. Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro mis XV Años con la mayor gratitud por tenerlos en mi vida."
+                </p>
+            </div>
+
+            <!-- Código de Vestimenta -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Código de Vestimenta</h2>
+                <p style="font-size: 1.2rem; color: var(--dorado-brillo); margin-bottom: 10px;">SemiFormal</p>
+                <p class="texto-mensaje">Traje o vestido elegante para la ocasión.</p>
+
+                <button class="acordeon-btn" onclick="toggleColores()">Colores reservados ▲</button>
+                <div class="acordeon-contenido" id="bloqueColores">
+                    Con mucho cariño se reservan los colores azules y grises, son exclusivos de la quinceañera. Gracias.
+                </div>
+            </div>
+
+            <!-- Mesa de Regalos -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Mesa de Regalos</h2>
+                <p class="texto-mensaje">
+                    El regalo es opcional, tu presencia es obligatoria. Pero si gustas hacerme un presente, se agradecerá que sea en efectivo a través de lluvia de sobres. Gracias.
+                </p>
+            </div>
+
+            <!-- Itinerario -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Itinerario</h2>
+                <div class="itinerario-item"><span>Recepción de invitados</span> <span>7:00 PM</span></div>
+                <div class="itinerario-item"><span>Entrada de la quinceañera</span> <span>8:00 PM</span></div>
+                <div class="itinerario-item"><span>Vals con sus Padres</span> <span>8:05 PM</span></div>
+                <div class="itinerario-item"><span>Vals de las rosas con invitados</span> <span>8:11 PM</span></div>
+                <div class="itinerario-item"><span>Brindis</span> <span>8:18 PM</span></div>
+                <div class="itinerario-item"><span>Sesión de fotos</span> <span>8:25 PM</span></div>
+                <div class="itinerario-item"><span>Cumpleaños</span> <span>8:55 PM</span></div>
+                <div class="itinerario-item"><span>Cena con los invitados</span> <span>9:00 PM</span></div>
+                <div class="itinerario-item"><span>A disfrutar de la fiesta</span> <span>9:30 PM</span></div>
+                <div class="itinerario-item"><span>Entrega de torta y agradecimiento</span> <span>--:--</span></div>
+            </div>
+
+            <!-- Ubicación -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Ubicación</h2>
+                <p><strong>Parroquia Antímano</strong></p>
+                <p>Salón de eventos</p>
+                <p class="texto-mensaje" style="margin-top: 8px;">
+                    Calle El Algodonal, Sector Patria Eterna (antes de entrar al Hospital José Ignacio Baldó).
+                </p>
+            </div>
+
+            <!-- Confirmación y Pase Personalizado -->
+            <div class="tarjeta">
+                <h2 class="titulo-tarjeta">Confirmación de Asistencia</h2>
+                <p class="texto-mensaje">Por favor confirma tu asistencia antes del 10 de octubre para ayudarnos con la organización.</p>
+                
+                <div class="pase-box">
+                    <p style="font-size: 0.8rem; text-transform: uppercase;">Pase Personalizado</p>
+                    <p class="pase-nombre" id="nombreInvitado">Invitado Especial</p>
+                    <p style="font-size: 0.9rem; margin-top: 5px;">Pases asignados: <strong id="cantidadPases">1</strong></p>
+                </div>
+
+                <a id="btnWhatsapp" href="#" target="_blank" class="btn-whatsapp">Confirmar Asistencia</a>
+            </div>
+
+            <p style="text-align: center; color: var(--dorado-brillo); font-size: 1.3rem; margin-top: 20px;">¡Te esperamos!</p>
+
+        </section>
     </div>
 
-    <!-- CÓDIGO DE VESTIMENTA Y COLORES RESERVADOS -->
-    <div class="section-card">
-      <h2 class="section-title">Código de Vestimenta</h2>
-      <p class="card-text" style="font-size: 18px; font-weight: bold; color: #ffd700;">Semi-Formal</p>
-      <div style="font-size: 40px; margin: 10px 0;">👔 👗</div>
-      
-      <button class="reserved-colors-btn" onclick="toggleColors()">Colores Reservados</button>
-      <div id="reserved-info" class="reserved-colors-info">
-        Con mucho cariño se reservan los colores azules y grises, son exclusivos de la quinceañera. ¡Gracias!
-      </div>
-    </div>
+    <script>
+        // Configuración de Parámetros URL (Personalización por invitado)
+        const urlParams = new URLSearchParams(window.location.search);
+        const invitado = urlParams.get('nombre') || 'Invitado Especial';
+        const pases = urlParams.get('pases') || '1';
+        const telefonoWhatsApp = '584120000000'; // Colocar el número de teléfono con código de país aquí
 
-    <!-- MESA DE REGALOS -->
-    <div class="section-card">
-      <h2 class="section-title">Mesa de Regalos</h2>
-      <p class="card-text">
-        El regalo es opcional, tu presencia es obligatoria. Pero si gustas hacerme un presente, se agradecerá que sea en efectivo a través de <strong>Lluvia de Sobres</strong>. ¡Gracias!
-      </p>
-    </div>
+        document.getElementById('nombreInvitado').innerText = invitado;
+        document.getElementById('cantidadPases').innerText = pases;
 
-    <!-- ITINERARIO -->
-    <div class="section-card">
-      <h2 class="section-title">Itinerario</h2>
-      <ul class="itinerary-list">
-        <li class="itinerary-item"><span>🚪 Recepción de invitados</span> <span>7:00 PM</span></li>
-        <li class="itinerary-item"><span>👑 Entrada de la quinceañera</span> <span>8:00 PM</span></li>
-        <li class="itinerary-item"><span>💃 Vals con sus Padres</span> <span>8:05 PM</span></li>
-        <li class="itinerary-item"><span>🌹 Vals de las rosas</span> <span>8:11 PM</span></li>
-        <li class="itinerary-item"><span>🥂 Brindis</span> <span>8:18 PM</span></li>
-        <li class="itinerary-item"><span>📸 Sesión de fotos</span> <span>8:25 PM</span></li>
-        <li class="itinerary-item"><span>🎂 Cumpleaños</span> <span>8:55 PM</span></li>
-        <li class="itinerary-item"><span>🍽️ Cena con los invitados</span> <span>9:00 PM</span></li>
-        <li class="itinerary-item"><span>🎉 A disfrutar de la fiesta</span> <span>9:30 PM</span></li>
-        <li class="itinerary-item"><span>🍰 Entrega de torta y agradecimiento</span></li>
-      </ul>
-    </div>
+        const mensajeWA = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Diana Greykelly.\nInvitado: ${invitado}\nCantidad de pases: ${pases}`);
+        document.getElementById('btnWhatsapp').href = `https://wa.me/${telefonoWhatsApp}?text=${mensajeWA}`;
 
-    <!-- UBICACIÓN -->
-    <div class="section-card">
-      <h2 class="section-title">Ubicación</h2>
-      <p class="card-text">
-        <strong>Parroquia Antímano</strong><br>
-        Salón de Eventos<br>
-        Calle El Algodonal, Sector Patria Eterna (antes de entrar al Hospital José Ignacio Baldó).
-      </p>
-    </div>
+        // Control de Apertura
+        function abrirInvitacion() {
+            document.getElementById('portada').style.display = 'none';
+            const contenido = document.getElementById('contenido');
+            contenido.style.display = 'block';
+            setTimeout(() => { contenido.style.opacity = '1'; }, 50);
 
-    <!-- CONFIRMACIÓN Y PASE PERSONALIZADO -->
-    <div class="section-card">
-      <h2 class="section-title">Confirmación de Asistencia</h2>
-      <p class="card-text">
-        Por favor confirma tu asistencia antes del <strong>10 de octubre</strong> para ayudarnos con la organización.
-      </p>
-      
-      <!-- PASE DINÁMICO -->
-      <div class="pass-card">
-        <p style="font-size: 12px; letter-spacing: 2px;">PASE EXCLUSIVO PARA:</p>
-        <div class="guest-name" id="pass-name">Familia / Invitado Especial</div>
-        <div class="pass-count" id="pass-tickets">Pases reservados: 1</div>
-      </div>
+            // Música
+            const audio = document.getElementById('musicaFondo');
+            document.getElementById('btnAudio').style.display = 'flex';
+            audio.play().catch(e => console.log("Auto-play prevenido por el navegador"));
 
-      <a id="whatsapp-link" href="#" target="_blank" class="whatsapp-btn">Confirmar Asistencia vía WhatsApp</a>
-    </div>
+            // Crear Globos
+            generarGlobos();
+        }
 
-    <div style="text-align: center; padding: 20px; font-size: 18px; color: #ffd700;" class="hero-title">
-      ¡Te esperamos!
-    </div>
+        // Control de Audio
+        function toggleAudio() {
+            const audio = document.getElementById('musicaFondo');
+            const btn = document.getElementById('btnAudio');
+            if (audio.paused) {
+                audio.play();
+                btn.innerText = '🎵';
+            } else {
+                audio.pause();
+                btn.innerText = '🔇';
+            }
+        }
 
-  </div>
+        // Acordeón de Colores Reservados
+        function toggleColores() {
+            const bloque = document.getElementById('bloqueColores');
+            bloque.style.display = (bloque.style.display === 'block') ? 'none' : 'block';
+        }
 
-  <script>
-    // SCRIPT PARA OBTENER NOMBRE Y PASES DESDE LA URL
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      const nombre = params.get('nombre') || 'Estimado(a) Invitado(a)';
-      const pases = params.get('pases') || '1';
-      return { nombre, pases };
-    }
+        // Generador de Globos
+        function generarGlobos() {
+            for (let i = 0; i < 15; i++) {
+                let globo = document.createElement('div');
+                globo.className = 'globo';
+                let size = Math.random() * 20 + 10;
+                globo.style.width = `${size}px`;
+                globo.style.height = `${size * 1.2}px`;
+                globo.style.left = `${Math.random() * 100}vw`;
+                globo.style.animationDelay = `${Math.random() * 5}s`;
+                globo.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                document.body.appendChild(globo);
+            }
+        }
 
-    const guestData = getQueryParams();
-    document.getElementById('pass-name').innerText = guestData.nombre;
-    document.getElementById('pass-tickets').innerText = `Pases reservados: ${guestData.pases}`;
+        // Cuenta Regresiva
+        const fechaEvento = new Date('2026-10-24T19:00:00').getTime();
+        
+        setInterval(() => {
+            const ahora = new Date().getTime();
+            const diferencia = fechaEvento - ahora;
 
-    // CONFIGURACIÓN ENLACE DE WHATSAPP
-    const phone = "584120000000"; // Reemplazar con el número de teléfono real
-    const message = encodeURIComponent(`Hola, confirmo mi asistencia para los 15 años de Diana. Soy ${guestData.nombre} y asistiremos ${guestData.pases} persona(s).`);
-    document.getElementById('whatsapp-link').href = `https://wa.me/${phone}?text=${message}`;
-
-    // ABRIR INVITACIÓN Y REPRODUCIR MÚSICA
-    function openInvitation() {
-      document.getElementById('envelope-screen').style.opacity = '0';
-      setTimeout(() => {
-        document.getElementById('envelope-screen').style.display = 'none';
-        const mainContent = document.getElementById('main-content');
-        mainContent.style.display = 'block';
-        setTimeout(() => { mainContent.style.opacity = '1'; }, 50);
-      }, 1000);
-
-      // Activar música
-      const music = document.getElementById('bg-music');
-      music.play().catch(() => console.log("Audio no autoejecutado por restricciones de navegador"));
-      document.getElementById('music-btn').style.display = 'flex';
-    }
-
-    // SILENCIAR / ACTIVAR MÚSICA
-    function toggleMusic() {
-      const music = document.getElementById('bg-music');
-      const btn = document.getElementById('music-btn');
-      if (music.paused) {
-        music.play();
-        btn.innerText = '🔊';
-      } else {
-        music.pause();
-        btn.innerText = '🔇';
-      }
-    }
-
-    // MOSTRAR/OCULTAR COLORES RESERVADOS
-    function toggleColors() {
-      const info = document.getElementById('reserved-info');
-      info.style.display = info.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // CONTEO REGRESIVO (24 OCTUBRE 2026)
-    const targetDate = new Date("October 24, 2026 19:00:00").getTime();
-    
-    setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-      }
-    }, 1000);
-  </script>
+            if (diferencia > 0) {
+                document.getElementById('dias').innerText = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+                document.getElementById('horas').innerText = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutos').innerText = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('segundos').innerText = Math.floor((diferencia % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+    </script>
 </body>
-</html
+</html>
