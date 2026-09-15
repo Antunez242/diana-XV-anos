@@ -47,6 +47,39 @@
       transform: scale(1.1);
       pointer-events: none;
     }
+    
+    .cover-card {
+      border: 2px solid var(--gold);
+      padding: 40px 20px;
+      border-radius: 15px;
+      background: rgba(11, 37, 69, 0.85);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+    }
+
+    .guest-badge {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+
+    .guest-name {
+      font-weight: 600;
+      color: var(--light-gold);
+      font-size: 1.1rem;
+    }
+
+    .guest-passes {
+      font-size: 0.85rem;
+      color: var(--light-blue);
+      margin-top: 3px;
+    }
+
 
     .victorian-frame {
       width: 90%;
@@ -763,7 +796,11 @@
   <!-- ===== PANTALLA DE APERTURA ===== -->
   <div id="opening-screen">
     <div class="floating-particles-open" id="open-particles"><div class="particle" style="left: 36.9345%; width: 4.03336px; height: 4.03336px; animation-duration: 8.13218s; animation-delay: 0.34649s;"></div><div class="particle" style="left: 49.8506%; width: 3.12283px; height: 3.12283px; animation-duration: 13.5099s; animation-delay: 2.29827s;"></div><div class="particle" style="left: 70.0375%; width: 7.36614px; height: 7.36614px; animation-duration: 7.58171s; animation-delay: 1.76874s;"></div><div class="particle" style="left: 66.099%; width: 3.79798px; height: 3.79798px; animation-duration: 6.39271s; animation-delay: 1.87826s;"></div><div class="particle" style="left: 82.1373%; width: 3.53836px; height: 3.53836px; animation-duration: 7.19282s; animation-delay: 0.786482s;"></div><div class="particle" style="left: 16.0388%; width: 5.15167px; height: 5.15167px; animation-duration: 7.93877s; animation-delay: 2.45887s;"></div><div class="particle" style="left: 5.79803%; width: 7.13761px; height: 7.13761px; animation-duration: 6.35936s; animation-delay: 2.76758s;"></div><div class="particle" style="left: 76.5461%; width: 4.35292px; height: 4.35292px; animation-duration: 12.194s; animation-delay: 1.50824s;"></div><div class="particle" style="left: 71.3858%; width: 5.84449px; height: 5.84449px; animation-duration: 11.1813s; animation-delay: 4.53821s;"></div><div class="particle" style="left: 77.0225%; width: 3.66511px; height: 3.66511px; animation-duration: 11.9645s; animation-delay: 2.19861s;"></div><div class="particle" style="left: 79.9333%; width: 7.27838px; height: 7.27838px; animation-duration: 9.70337s; animation-delay: 4.28635s;"></div><div class="particle" style="left: 99.858%; width: 5.93979px; height: 5.93979px; animation-duration: 9.56652s; animation-delay: 0.593156s;"></div><div class="particle" style="left: 33.1217%; width: 7.1821px; height: 7.1821px; animation-duration: 11.0151s; animation-delay: 0.671991s;"></div><div class="particle" style="left: 96.9861%; width: 5.83692px; height: 5.83692px; animation-duration: 11.6566s; animation-delay: 0.344145s;"></div><div class="particle" style="left: 20.7345%; width: 4.35819px; height: 4.35819px; animation-duration: 11.0332s; animation-delay: 1.95425s;"></div></div>
-    
+    <div class="cover-card">
+      <div class="guest-badge" id="guest-container">
+        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
+        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
+      </div>
     <div class="victorian-frame">
       <div class="corner-ornament tl"></div>
       <div class="corner-ornament tr"></div>
@@ -939,12 +976,17 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
   </div>
 
   <script>
-    (function(){
-      /* ===== LECTURA DEL NOMBRE DE INVITADO DESDE LA URL ===== */
-      const urlParams = new URLSearchParams(window.location.search);
-      const invitadoParam = urlParams.get('invitado');
-      const openGuestElem = document.getElementById('open-guest-name');
-      const cardGuestElem = document.getElementById('card-guest-name');
+    // URL Parameters Logic for Personalization
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('n') || 'Apreciado Invitado';
+    const guestPasses = urlParams.get('p') || '1';
+
+    // Populate guest info
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
+
+    
+    (function(){      
       const rsvpLink = document.getElementById('rsvp-link');
 
       if (invitadoParam) {
