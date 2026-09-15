@@ -111,6 +111,17 @@
     }
 
     /* Estilo para el nombre del invitado */
+    .cover-card {
+      border: 2px solid var(--gold);
+      padding: 40px 20px;
+      border-radius: 15px;
+      background: rgba(11, 37, 69, 0.85);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+    }
+    
     .guest-badge {
       background: rgba(212, 175, 55, 0.15);
       border: 1px solid var(--gold);
@@ -132,7 +143,56 @@
       margin-top: 3px;
     }
 
-    
+    .wax-seal-btn {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #4a5568, #1a202c);
+      border: 3px solid rgba(201, 168, 76, 0.6);
+      box-shadow: 
+        0 4px 15px rgba(0,0,0,0.4),
+        inset 0 0 20px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      margin: 0 auto;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: sealPulse 2.5s ease-in-out infinite;
+    }
+    .wax-seal-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 
+        0 6px 25px rgba(201, 168, 76, 0.3),
+        inset 0 0 20px rgba(0,0,0,0.3);
+    }
+    .wax-seal-btn span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #c9a84c;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .wax-seal-btn::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px dashed rgba(201, 168, 76, 0.3);
+      animation: sealRotate 8s linear infinite;
+    }
+
+    @keyframes sealPulse {
+      0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,0,0,0.3); }
+      50% { box-shadow: 0 4px 25px rgba(201, 168, 76, 0.2), inset 0 0 20px rgba(0,0,0,0.3); }
+    }
+    @keyframes sealRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
     .floating-particles-open {
       position: absolute;
       inset: 0;
@@ -590,7 +650,7 @@
   <!-- Cover / Envelope Screen -->
   <!-- ===== PANTALLA DE APERTURA ===== -->
   <div id="opening-screen"></div>
-      <div class="floating-particles-open" id="open-particles">
+  <div class="floating-particles-open" id="open-particles">
       <div class="particle" style="left: 36.9345%; width: 4.03336px; height: 4.03336px; animation-duration: 8.13218s; animation-delay: 0.34649s;"></div>
       <div class="particle" style="left: 49.8506%; width: 3.12283px; height: 3.12283px; animation-duration: 13.5099s; animation-delay: 2.29827s;"></div>
       <div class="particle" style="left: 70.0375%; width: 7.36614px; height: 7.36614px; animation-duration: 7.58171s; animation-delay: 1.76874s;"></div>
@@ -621,7 +681,8 @@
       <div class="guest-badge" id="guest-container">
         <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
         <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
-        <button class="btn-open" onclick="openInvitation()"></button>
+       
+      <div class="wax-seal-btn" id="open-btn">
         <span>Abrir<br>Invitación</span>
       </div>
     </div>
@@ -915,10 +976,23 @@
     const musicBtn = document.getElementById('music-toggle');
     let isPlaying = false;
 
-    function openInvitation() {
-      document.getElementById('opening-screen');
-      playMusic();
-    }
+    const openingScreen = document.getElementById('opening-screen');
+      const openBtn = document.getElementById('open-btn');
+      
+      openBtn.addEventListener('click', function(){
+        audio.play().then(() => {
+          isPlaying = true;
+          audioBtn.innerHTML = '🎵';
+          audioBtn.classList.add('playing');
+        }).catch(e => console.log('Audio autoplay blocked'));
+        
+        audioBtn.classList.add('visible');
+        
+        openingScreen.classList.add('hidden');
+        setTimeout(() => {
+          openingScreen.style.display = 'none';
+        }, 1200);
+      });
 
     function playMusic() {
       audio.play().then(() => {
