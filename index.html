@@ -20,20 +20,7 @@
   <!-- Carga de la librería QRCode.js -->
 
   <style>
-    
-    :root {
-      --primary-blue: #0b2545;
-      --secondary-blue: #134074;
-      --light-blue: #8da9c4;
-      --soft-bg-blue: #1d3557;
-      --gold: #d4af37;
-      --light-gold: #f4e285;
-      --white: #ffffff;
-      --text-light: #e0e1dd;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; 
-      font-family: 'Montserrat', sans-serif;
-      }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Montserrat', sans-serif;
       background: #0f0c29;
@@ -55,14 +42,12 @@
       justify-content: center;
       transition: opacity 1.2s ease, transform 1.2s ease;
     }
-
         
     #opening-screen.hidden {
       opacity: 0;
       transform: scale(1.1);
       pointer-events: none;
-    }
-    
+    }    
    
     .victorian-frame {
       width: 90%;
@@ -775,13 +760,14 @@
       <div class="corner-ornament tr"></div>
       <div class="corner-ornament bl"></div>
       <div class="corner-ornament br"></div>
-      <div class="cover-card">
       
       <div class="open-title">Invitación Especial</div>
       <div class="open-name">Diana Greykelly</div>
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
+      <div id="open-guest-name" class="guest-welcome"></div>
+
       <div class="wax-seal-btn" id="open-btn">
         <span>Abrir<br>Invitación</span>
       </div>
@@ -944,16 +930,19 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
   </div>
 
   <script>
-    // URL Parameters Logic for Personalization
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('n') || 'Apreciado Invitado';
-    const guestPasses = urlParams.get('p') || '1';
+    function(){
+      /* ===== LECTURA DEL NOMBRE DE INVITADO DESDE LA URL ===== */
+      const urlParams = new URLSearchParams(window.location.search);
+      const invitadoParam = urlParams.get('invitado');
+      const openGuestElem = document.getElementById('open-guest-name');
+      const cardGuestElem = document.getElementById('card-guest-name');
+      const rsvpLink = document.getElementById('rsvp-link');
 
-    // Populate guest info
-    document.getElementById('guest-name-display').innerText = guestName;
-    document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
-   
-
+      if (invitadoParam) {
+        const nombreInvitado = decodeURIComponent(invitadoParam);
+        openGuestElem.textContent = "Para: " + nombreInvitado;
+        cardGuestElem.textContent = nombreInvitado;
+        
         // Personalizar el mensaje de WhatsApp con el nombre
         const mensajeWA = `Hola, mi nombre es ${nombreInvitado} y confirmo mi asistencia a los XV años de Diana Greykelly.`;
         rsvpLink.href = `https://wa.me/+584142545124?text=${encodeURIComponent(mensajeWA)}`;
