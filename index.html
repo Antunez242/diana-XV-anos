@@ -210,7 +210,7 @@
     /* ===== APP ===== */
     #app {
       width: 100%;
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
       position: relative;
     }
@@ -239,33 +239,11 @@
       background-repeat: no-repeat;
       overflow: hidden;
     }
-    .page-1::after {
-      content: '';
-      position: absolute;
-      inset: -20px;
-      background-image: url(diana.jpg);
-      background-size: relative;
-      background-position: center;
-      background-repeat: no-repeat;
-      animation: kenBurns 20s ease-in-out infinite alternate;
-      z-index: 0;
-    }
+    
     @keyframes kenBurns {
       0% { transform: scale(1) translate(0, 0); }
       100% { transform: scale(1.15) translate(-1%, -1%); }
-    }
-    .page-1::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(22,33,62,0.4) 0%, rgba(15,20,40,0.6) 50%, rgba(10,10,25,0.9) 100%);
-      z-index: 1;
-      opacity: 0.65;
-    }
-    .page-1 > * {
-      position: relative;
-      z-index: 2;
-    }
+   
 
     .particles-container {
       position: absolute;
@@ -717,50 +695,6 @@
       width: 100%;
     }
 
-    /* Navigation Controls */
-    .nav-arrow {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      background: rgba(11, 37, 69, 0.6);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      z-index: 90;
-    }
-
-    .nav-arrow.left { left: 10px; }
-    .nav-arrow.right { right: 10px; }
-
-    .nav-dots {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 90;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.4);
-      transition: all 0.3s ease;
-    }
-
-    .dot.active {
-      background: var(--gold);
-      width: 20px;
-      border-radius: 10px;
-    }
   </style>
 </head>
 <body>
@@ -848,7 +782,6 @@
             <i class="fas fa-arrow-right"></i>
           </div>
         </div>
-      </div>
 
   <!-- ===== APP ===== -->
   <div id="app">
@@ -920,8 +853,6 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
         <div class="seq-section" id="sec-regalos">
           <div class="gold-line"><span>Mesa de regalos</span></div>
@@ -1004,10 +935,6 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           </div>
         </div>
       </div>
-
-    </div>
-  </div>
-
   
 
   <script>
