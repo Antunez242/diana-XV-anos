@@ -954,6 +954,32 @@
   </div>
 
   <script>
+    function createParticles(container, count, type) {
+        for(let i=0; i<count; i++){
+          const p = document.createElement('div');
+          p.className = type === 'gold' ? 'particle-gold' : 'particle-blue';
+          p.style.left = Math.random() * 100 + '%';
+          p.style.animationDuration = (8 + Math.random() * 12) + 's';
+          p.style.animationDelay = Math.random() * 10 + 's';
+          p.style.width = (2 + Math.random() * 3) + 'px';
+          p.style.height = p.style.width;
+          container.appendChild(p);
+        }
+      }
+      createParticles(document.getElementById('particles'), 20, 'gold');
+      createParticles(document.getElementById('particles'), 15, 'blue');
+      
+      const openContainer = document.getElementById('open-particles');
+      for(let i=0; i<15; i++){
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.width = (3 + Math.random() * 5) + 'px';
+        p.style.height = p.style.width;
+        p.style.animationDuration = (6 + Math.random() * 8) + 's';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        openContainer.appendChild(p);
+      }
     // URL Parameters Logic for Personalization
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('n') || 'Apreciado Invitado';
@@ -974,7 +1000,7 @@
     let isPlaying = false;
 
     function openInvitation() {
-      document.getElementById('cover-screen').classList.add('hidden');
+      document.getElementById('opening-screen').classList.add('hidden');
       playMusic();
       createBalloons();
     }
