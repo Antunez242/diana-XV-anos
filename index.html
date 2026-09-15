@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <meta property="og:title" content="XV Años Diana Greykelly">
   <meta property="og:description" content="¡Tengo el honor de invitarte a celebrar mis XV años! 24 de Octubre de 2026.">
   <meta property="og:image" content="https://antunez242.github.io/diana.jpg/">
@@ -14,9 +12,14 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="XV Años Diana Greykelly">
   <meta name="twitter:description" content="¡Tengo el honor de invitarte a celebrar mis XV años! 24 de Octubre de 2026.">
-  <meta name="twitter:image" content="https://antunez242.github.io/diana.jpg/">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="twitter:image" content="https://jesusca0329.github.io/diana15/">
+
+  <title>XV Años - Diana Greykelly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Montserrat:wght@300;400;600&amp;family=Cinzel:wght@400;600&amp;display=swap" rel="stylesheet">
+  
+  <!-- Carga de la librería QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -44,37 +47,6 @@
       opacity: 0;
       transform: scale(1.1);
       pointer-events: none;
-    }
-    .cover-card {
-      border: 2px solid var(--gold);
-      padding: 40px 20px;
-      border-radius: 15px;
-      background: rgba(11, 37, 69, 0.85);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.2);
-      max-width: 450px;
-      width: 90%;
-      position: relative;
-    }
-
-    .guest-badge {
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid var(--gold);
-      padding: 10px 15px;
-      border-radius: 20px;
-      margin-bottom: 25px;
-      display: inline-block;
-    }
-
-    .guest-name {
-      font-weight: 600;
-      color: var(--light-gold);
-      font-size: 1.1rem;
-    }
-
-    .guest-passes {
-      font-size: 0.85rem;
-      color: var(--light-blue);
-      margin-top: 3px;
     }
 
     .victorian-frame {
@@ -136,7 +108,15 @@
     }
 
     /* Estilo para el nombre del invitado */
-    
+    .guest-welcome {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: #c9a84c;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 8px rgba(201, 168, 76, 0.3);
+    }
+
     .wax-seal-btn {
       width: 100px;
       height: 100px;
@@ -210,7 +190,7 @@
     /* ===== APP ===== */
     #app {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       overflow: hidden;
       position: relative;
     }
@@ -233,17 +213,39 @@
     /* ===== PÁGINA 1 CON MOVIMIENTO ===== */
     .page-1 {
       justify-content: center;
-      background-image: url(diana.jpg);
+      background-image: url(img/preview.jpg.jpeg);
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
       overflow: hidden;
     }
-    
+    .page-1::after {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background-image: url(img/preview.jpg.jpeg);
+      background-size: relative;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: kenBurns 20s ease-in-out infinite alternate;
+      z-index: 0;
+    }
     @keyframes kenBurns {
       0% { transform: scale(1) translate(0, 0); }
       100% { transform: scale(1.15) translate(-1%, -1%); }
-   
+    }
+    .page-1::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(22,33,62,0.4) 0%, rgba(15,20,40,0.6) 50%, rgba(10,10,25,0.9) 100%);
+      z-index: 1;
+      opacity: 0.65;
+    }
+    .page-1 > * {
+      position: relative;
+      z-index: 2;
+    }
 
     .particles-container {
       position: absolute;
@@ -676,38 +678,119 @@
     .page-2::-webkit-scrollbar { width: 4px; }
     .page-2::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 4px; }
 
-    /* Buttons */
-    .btn-whatsapp {
-      background: #25D366;
-      color: var(--white);
-      border: none;
-      padding: 15px 25px;
-      border-radius: 50px;
-      font-weight: 600;
-      font-size: 1rem;
-      display: flex;
+    /* ===== BOTÓN CONFIRMAR ASISTENCIA ===== */
+    .rsvp-card {
+      background: linear-gradient(145deg, #16213e, #1a2a4a);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    .rsvp-card .rsvp-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.3));
+    }
+    .rsvp-card .rsvp-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 0.5rem;
+    }
+    .rsvp-card .rsvp-text {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .rsvp-btn {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, #c9a84c, #a08030);
+      border: none;
+      border-radius: 30px;
+      color: #16213e;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       text-decoration: none;
-      margin-top: 15px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-      width: 100%;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .rsvp-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .rsvp-btn:hover::before {
+      left: 100%;
+    }
+    .rsvp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+    }
+    .rsvp-btn:active {
+      transform: translateY(0);
     }
 
+    /* ===== ESTILOS CÓDIGO QR ===== */
+    .qr-card {
+      background: #16213e;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 16px;
+      padding: 1.8rem 1.2rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    #qrcode {
+      background: #fff;
+      padding: 12px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      margin: 1rem 0;
+    }
+    #qrcode img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; transform: translateX(0); }
+      50% { opacity: 1; transform: translateX(5px); }
+    }
+    #pages.dragging { transition: none !important; }
   </style>
+<base target="_blank">
 </head>
 <body>
 
-  <!-- Audio Element -->
-  <audio id="bg-music" loop>
-    <!-- Sustituir con la ruta real del archivo de audio -->
+  <!-- ===== AUDIO ===== -->
+  <audio id="bg-music" loop="" preload="auto">
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Cover / Envelope Screen -->
+  <!-- ===== BOTÓN DE AUDIO ===== -->
+  <button id="audio-toggle" title="Reproducir/Pausar música">🎵</button>
+
   <!-- ===== PANTALLA DE APERTURA ===== -->
- <!-- ===== PANTALLA DE APERTURA ===== -->
   <div id="opening-screen">
     <div class="floating-particles-open" id="open-particles"><div class="particle" style="left: 36.9345%; width: 4.03336px; height: 4.03336px; animation-duration: 8.13218s; animation-delay: 0.34649s;"></div><div class="particle" style="left: 49.8506%; width: 3.12283px; height: 3.12283px; animation-duration: 13.5099s; animation-delay: 2.29827s;"></div><div class="particle" style="left: 70.0375%; width: 7.36614px; height: 7.36614px; animation-duration: 7.58171s; animation-delay: 1.76874s;"></div><div class="particle" style="left: 66.099%; width: 3.79798px; height: 3.79798px; animation-duration: 6.39271s; animation-delay: 1.87826s;"></div><div class="particle" style="left: 82.1373%; width: 3.53836px; height: 3.53836px; animation-duration: 7.19282s; animation-delay: 0.786482s;"></div><div class="particle" style="left: 16.0388%; width: 5.15167px; height: 5.15167px; animation-duration: 7.93877s; animation-delay: 2.45887s;"></div><div class="particle" style="left: 5.79803%; width: 7.13761px; height: 7.13761px; animation-duration: 6.35936s; animation-delay: 2.76758s;"></div><div class="particle" style="left: 76.5461%; width: 4.35292px; height: 4.35292px; animation-duration: 12.194s; animation-delay: 1.50824s;"></div><div class="particle" style="left: 71.3858%; width: 5.84449px; height: 5.84449px; animation-duration: 11.1813s; animation-delay: 4.53821s;"></div><div class="particle" style="left: 77.0225%; width: 3.66511px; height: 3.66511px; animation-duration: 11.9645s; animation-delay: 2.19861s;"></div><div class="particle" style="left: 79.9333%; width: 7.27838px; height: 7.27838px; animation-duration: 9.70337s; animation-delay: 4.28635s;"></div><div class="particle" style="left: 99.858%; width: 5.93979px; height: 5.93979px; animation-duration: 9.56652s; animation-delay: 0.593156s;"></div><div class="particle" style="left: 33.1217%; width: 7.1821px; height: 7.1821px; animation-duration: 11.0151s; animation-delay: 0.671991s;"></div><div class="particle" style="left: 96.9861%; width: 5.83692px; height: 5.83692px; animation-duration: 11.6566s; animation-delay: 0.344145s;"></div><div class="particle" style="left: 20.7345%; width: 4.35819px; height: 4.35819px; animation-duration: 11.0332s; animation-delay: 1.95425s;"></div></div>
     
@@ -722,11 +805,6 @@
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
-      <div class="cover-card">
-      <div class="guest-badge" id="guest-container">
-        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
-        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
-      </div>
       <div id="open-guest-name" class="guest-welcome"></div>
 
       <div class="wax-seal-btn" id="open-btn">
@@ -738,50 +816,6 @@
       24 de Octubre de 2026
     </p>
   </div>
-
-
-
-  <!-- Main Content Container -->
-  <div class="app-container">
-
-    <div class="slider-wrapper" id="slider">
-
-      <!-- SLIDE 1: Hero / Countdown -->
-      <div class="slide hero-slide">
-        <!-- Foto interactiva con movimiento -->
-        <img src="diana.jpg" alt="Diana Greykelly" class="hero-bg">
-        <div class="hero-overlay"></div>
-        
-        <div class="hero-content">
-          <div class="hero-subtitle">MIS XV AÑOS</div>
-          <div class="hero-title">Diana Greykelly</div>
-          <div class="hero-date-badge">24 . 10 . 2026</div>
-
-          <!-- Countdown Timer -->
-          <div class="countdown-container">
-            <div class="time-box">
-              <span class="time-number" id="days">00</span>
-              <span class="time-label">días</span>
-            </div>
-            <div class="time-box">
-              <span class="time-number" id="hours">00</span>
-              <span class="time-label">horas</span>
-            </div>
-            <div class="time-box">
-              <span class="time-number" id="minutes">00</span>
-              <span class="time-label">minutos</span>
-            </div>
-            <div class="time-box">
-              <span class="time-number" id="seconds">00</span>
-              <span class="time-label">segundos</span>
-            </div>
-          </div>
-
-          <div class="swipe-indicator" onclick="nextSlide()">
-            <span>DESLIZA A LA DERECHA</span>
-            <i class="fas fa-arrow-right"></i>
-          </div>
-        </div>
 
   <!-- ===== APP ===== -->
   <div id="app">
@@ -853,6 +887,8 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
         <div class="seq-section" id="sec-regalos">
           <div class="gold-line"><span>Mesa de regalos</span></div>
@@ -906,111 +942,76 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           </div>
         </div>
 
-         <!-- SLIDE 5: Ubicación & RSVP -->
-      <div class="seq-section" id="sec-rsvp">
-        <div class="card-container">
-          <!-- Ubicación -->
-          <div class="seq-section" id="sec-direccion">
-            <div class="box-header"><i class="fas fa-map-marker-alt"></i> Ubicación</div>
-            <div class="box-text" style="line-height: 1.8;">
-              <strong>Parroquia Antímano</strong><br>
-              Salón de eventos<br>
-              Calle El Algodonal, Sector Patria Eterna<br>
-              <span style="font-size: 0.85rem; color: var(--light-blue);">(Antes de entrar al hospital José Ignacio Baldó)</span>
-            </div>
-          </div>
-
-          <!-- RSVP -->
-          <div class="seq-section" id="sec-rsvp">
-            <div class="box-header">Reservar</div>
-            <div class="box-text">
-              Por favor confirma tu asistencia antes del <strong>10 de octubre</strong> para ayudarnos con la organización.
-            </div>
-            <a id="whatsapp-link" href="#" target="_blank" class="btn-whatsapp">
-              <i class="fab fa-whatsapp"></i> Confirmar asistencia
+        <!-- ===== CONFIRMAR ASISTENCIA ===== -->
+        <div class="seq-section" id="sec-rsvp">
+          <div class="gold-line"><span>Confirmar Asistencia</span></div>
+          <div class="rsvp-card">
+            <div class="rsvp-icon">🖋️</div>
+            <p class="rsvp-title">Reservar</p>
+            <p class="rsvp-text">Por favor confirma tu asistencia antes del 10 de octubre.</p>
+            <a class="rsvp-btn" id="rsvp-link" href="https://wa.me/+584142545124?text=Hola,%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Diana" target="_blank">
+              <span>✓</span> Confirmar por WhatsApp
             </a>
-            <div style="font-size: 1.1rem; font-family: 'Great Vibes', cursive; color: var(--gold); margin-top: 15px;">
-              ¡Te esperamos!
-            </div>
           </div>
         </div>
+
+        <div class="seq-section" id="sec-direccion">
+          <div class="gold-line"><span>Dirección</span></div>
+          <div style="font-size:2rem;margin-bottom:0.5rem;">📍</div>
+          <p style="font-size:1.1rem;color:#c9a84c;font-style:italic;margin:0.3rem 0;font-weight:600;">Parroquia Antimano</p>
+          <p style="font-size:0.95rem;color:#555;margin:0.3rem 0;">Salon de Eventos.</p>
+          <p style="font-size:0.9rem;color:#777;opacity:0.9;line-height:1.5;margin:0.3rem 0;">Calle el algodonal sector Patria Eterna antes de llegar al hospital Jose Ignacio Baldó.</p>
+        </div>
+
+        <!-- ===== SECCIÓN DE CÓDIGO QR Y NOMBRE DE INVITADO ===== -->
+        <div class="seq-section" id="sec-qr">
+          <div class="gold-line"><span>Pase Personal</span></div>
+          <div class="qr-card">
+            <p style="font-family:'Cinzel', serif; font-size: 0.85rem; letter-spacing: 2px; color: #a0aec0; text-transform: uppercase;">Invitación para:</p>
+            <h3 id="card-guest-name" style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #c9a84c; margin: 0.2rem 0 0.8rem 0;">Invitado Especial</h3>
+            
+            <div id="qrcode" title="https://jesusca0329.github.io/diana"><canvas width="140" height="140" style="display: none;"></canvas><img src="data:image/png;base64,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" style="display: block;"></div>
+            
+            <p style="font-size: 0.75rem; color: #cbd5e1; font-style: italic; margin-top: 0.5rem;">Código QR personalizado para cada invitado.</p>
+          </div>
+        </div>
+
+        <div class="footer-end"><p>¡Te esperamos!</p></div>
       </div>
-  
+    </div>
+  </div>
 
   <script>
-        // Slider Logic
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const slider = document.getElementById('slider');
-    const dotsContainer = document.getElementById('dots-container');
+    (function(){
+      /* ===== LECTURA DEL NOMBRE DE INVITADO DESDE LA URL ===== */
+      const urlParams = new URLSearchParams(window.location.search);
+      const invitadoParam = urlParams.get('invitado');
+      const openGuestElem = document.getElementById('open-guest-name');
+      const cardGuestElem = document.getElementById('card-guest-name');
+      const rsvpLink = document.getElementById('rsvp-link');
 
-    // Create Navigation Dots
-    for (let i = 0; i < totalSlides; i++) {
-      let dot = document.createElement('div');
-      dot.className = `dot ${i === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
-    }
+      if (invitadoParam) {
+        const nombreInvitado = decodeURIComponent(invitadoParam);
+        openGuestElem.textContent = "Para: " + nombreInvitado;
+        cardGuestElem.textContent = nombreInvitado;
+        
+        // Personalizar el mensaje de WhatsApp con el nombre
+        const mensajeWA = `Hola, mi nombre es ${nombreInvitado} y confirmo mi asistencia a los XV años de Diana Greykelly.`;
+        rsvpLink.href = `https://wa.me/+584142545124?text=${encodeURIComponent(mensajeWA)}`;
+      }
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+      /* ===== GENERACIÓN CÓDIGO QR ===== */
+      new QRCode(document.getElementById("qrcode"), {
+        text: window.location.href,
+        width: 140,
+        height: 140,
+        colorDark : "#16213e",
+        colorLight : "#ffffff",
+        correctLevel : QRCode.CorrectLevel.H
       });
-    }
 
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlider();
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlider();
-      }
-    }
-
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlider();
-    }
-
-    // Touch / Swipe Gestures Support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-
-    document.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) nextSlide();
-      if (touchEndX > touchStartX + 50) prevSlide();
-    }
-     // URL Parameters Logic for Personalization
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('n') || 'Apreciado Invitado';
-    const guestPasses = urlParams.get('p') || '1';
-
-    // Populate guest info
-    document.getElementById('guest-name-display').innerText = guestName;
-    document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
-
-    // WhatsApp Link Generation
-    const phone = "584142545124"; // Sustituir por el número de WhatsApp correspondiente
-    const message = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Diana Greykelly. Nombre: ${guestName} (${guestPasses} pase/s).`);
-    document.getElementById('whatsapp-link').href = `https://wa.me/${phone}?text=${message}`;
-    
-    function createParticles(container, count, type) {
+      /* ===== PARTÍCULAS ===== */
+      function createParticles(container, count, type) {
         for(let i=0; i<count; i++){
           const p = document.createElement('div');
           p.className = type === 'gold' ? 'particle-gold' : 'particle-blue';
@@ -1036,14 +1037,29 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
         p.style.animationDelay = Math.random() * 5 + 's';
         openContainer.appendChild(p);
       }
-   
 
-    // Audio Logic
-    const audio = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('music-toggle');
-    let isPlaying = false;
+      /* ===== AUDIO ===== */
+      const audio = document.getElementById('bg-music');
+      const audioBtn = document.getElementById('audio-toggle');
+      let isPlaying = false;
+      
+      function toggleAudio(){
+        if(isPlaying){
+          audio.pause();
+          audioBtn.innerHTML = '🔇';
+          audioBtn.classList.remove('playing');
+          isPlaying = false;
+        } else {
+          audio.play().catch(e => console.log('Audio requires interaction'));
+          audioBtn.innerHTML = '🎵';
+          audioBtn.classList.add('playing');
+          isPlaying = true;
+        }
+      }
+      audioBtn.addEventListener('click', toggleAudio);
 
-    const openingScreen = document.getElementById('opening-screen');
+      /* ===== APERTURA ===== */
+      const openingScreen = document.getElementById('opening-screen');
       const openBtn = document.getElementById('open-btn');
       
       openBtn.addEventListener('click', function(){
@@ -1060,7 +1076,16 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           openingScreen.style.display = 'none';
         }, 1200);
       });
- /* ===== NAVEGACIÓN DE PÁGINAS Y SCROLL ===== */
+
+      /* ===== BOTÓN COLORES RESERVADOS ===== */
+      const colorsBtn = document.getElementById('colors-btn');
+      const colorsMsg = document.getElementById('colors-message');
+      colorsBtn.addEventListener('click', function(){
+        colorsBtn.classList.toggle('open');
+        colorsMsg.classList.toggle('show');
+      });
+
+      /* ===== NAVEGACIÓN DE PÁGINAS Y SCROLL ===== */
       const pages = document.getElementById('pages');
       const swipeHint = document.getElementById('swipe-hint');
       const backBtn = document.getElementById('back-btn');
@@ -1103,105 +1128,31 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           showPage1(); // Deslizar a la derecha para regresar
         }
       }
-    
 
+      /* ===== CUENTA REGRESIVA ===== */
+      const eventDate = new Date('October 24, 2026 19:00:00').getTime();
 
-    // Slider Logic
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const slider = document.getElementById('slider');
-    const dotsContainer = document.getElementById('dots-container');
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const difference = eventDate - now;
 
-    // Create Navigation Dots
-    for (let i = 0; i < totalSlides; i++) {
-      let dot = document.createElement('div');
-      dot.className = `dot ${i === 0 ? 'active' : ''}`;
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
-    }
+        if (difference > 0) {
+          const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      document.querySelectorAll('.dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-      });
-    }
-
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
-        updateSlider();
-      }
-    }
-
-    function prevSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
-        updateSlider();
-      }
-    }
-
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlider();
-    }
-
-    // Touch / Swipe Gestures Support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    document.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-
-    document.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 50) nextSlide();
-      if (touchEndX > touchStartX + 50) prevSlide();
-    }
-
-    // Countdown Timer Logic
-    const eventDate = new Date('October 24, 2026 19:00:00').getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      if (distance < 0) {
-        document.getElementById('days').innerText = "00";
-        document.getElementById('hours').innerText = "00";
-        document.getElementById('minutes').innerText = "00";
-        document.getElementById('seconds').innerText = "00";
-        return;
+          document.getElementById('days').textContent = days < 10 ? '0' + days : days;
+          document.getElementById('hours').textContent = hours < 10 ? '0' + hours : hours;
+          document.getElementById('minutes').textContent = minutes < 10 ? '0' + minutes : minutes;
+          document.getElementById('seconds').textContent = seconds < 10 ? '0' + seconds : seconds;
+        }
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
 
-      document.getElementById('days').innerText = String(days).padStart(2, '0');
-      document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-      document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-      document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // Modal Logic
-    function openModal() {
-      document.getElementById('colors-modal').classList.add('active');
-    }
-
-    function closeModal() {
-      document.getElementById('colors-modal').classList.remove('active');
-    }
+    })();
   </script>
-</body>
-</html>
+
+</body></html>
