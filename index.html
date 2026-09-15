@@ -1000,9 +1000,8 @@
     let isPlaying = false;
 
     function openInvitation() {
-      document.getElementById('opening-screen').classList.add('hidden');
+      document.getElementById('opening-screen').classList.add('opening-screen.hidden');
       playMusic();
-      createBalloons();
     }
 
     function playMusic() {
@@ -1023,21 +1022,6 @@
         audio.play();
         musicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
         isPlaying = true;
-      }
-    }
-
-    // Balloon Animation Generator
-    function createBalloons() {
-      const container = document.getElementById('balloon-container');
-      const colors = ['rgba(255,255,255,0.4)', 'rgba(141,169,196,0.4)', 'rgba(212,175,55,0.3)'];
-      for (let i = 0; i < 15; i++) {
-        let balloon = document.createElement('div');
-        balloon.className = 'balloon';
-        balloon.style.left = `${Math.random() * 100}%`;
-        balloon.style.animationDuration = `${8 + Math.random() * 7}s`;
-        balloon.style.animationDelay = `${Math.random() * 5}s`;
-        balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        container.appendChild(balloon);
       }
     }
 
