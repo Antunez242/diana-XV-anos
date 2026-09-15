@@ -42,13 +42,8 @@
       justify-content: center;
       transition: opacity 1.2s ease, transform 1.2s ease;
     }
-    #opening-screen.hidden {
-      opacity: 0;
-      transform: scale(1.1);
-      pointer-events: none;
-    }
-    
-    .cover-card {
+
+     .cover-card {
       border: 2px solid var(--gold);
       padding: 40px 20px;
       border-radius: 15px;
@@ -79,8 +74,14 @@
       color: var(--light-blue);
       margin-top: 3px;
     }
-
-
+    
+    #opening-screen.hidden {
+      opacity: 0;
+      transform: scale(1.1);
+      pointer-events: none;
+    }
+    
+   
     .victorian-frame {
       width: 90%;
       max-width: 340px;
