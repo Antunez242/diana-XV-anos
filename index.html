@@ -44,7 +44,7 @@
     }
 
     /* ===== PANTALLA DE APERTURA VICTORIANA ===== */
-    #opening-screen {
+   #opening-screen {
       position: fixed;
       inset: 0;
       z-index: 1000;
@@ -54,17 +54,6 @@
       align-items: center;
       justify-content: center;
       transition: opacity 1.2s ease, transform 1.2s ease;
-    }
-
-     .cover-card {
-      border: 2px solid var(--gold);
-      padding: 20px 15px;
-      border-radius: 7px;
-      background: rgba(11, 37, 69, 0.85);
-      box-shadow: 0 15px 15px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.2);
-      max-width: 240px;
-      width: 50%;
-      position: center;
     }
 
     .guest-badge {
@@ -813,10 +802,7 @@
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
-      <div class="guest-badge" id="guest-container">
-        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
-        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
-      </div>
+      <div class="guest-badge" id="guest-container"></div>
 
       <div class="wax-seal-btn" id="open-btn">
         <span>Abrir<br>Invitación</span>
