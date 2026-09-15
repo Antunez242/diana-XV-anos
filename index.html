@@ -56,27 +56,7 @@
       transition: opacity 1.2s ease, transform 1.2s ease;
     }
 
-    .guest-badge {
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid var(--gold);
-      padding: 10px 15px;
-      border-radius: 20px;
-      margin-bottom: 25px;
-      display: inline-block;
-    }
-
-    .guest-name {
-      font-weight: 600;
-      color: var(--light-gold);
-      font-size: 1.1rem;
-    }
-
-    .guest-passes {
-      font-size: 0.85rem;
-      color: var(--light-blue);
-      margin-top: 3px;
-    }
-    
+        
     #opening-screen.hidden {
       opacity: 0;
       transform: scale(1.1);
@@ -802,8 +782,6 @@
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
-      <div class="guest-badge" id="guest-container"></div>
-
       <div class="wax-seal-btn" id="open-btn">
         <span>Abrir<br>Invitación</span>
       </div>
@@ -974,16 +952,8 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
     // Populate guest info
     document.getElementById('guest-name-display').innerText = guestName;
     document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
+   
 
-    
-    (function(){      
-      const rsvpLink = document.getElementById('rsvp-link');
-
-      if (invitadoParam) {
-        const nombreInvitado = decodeURIComponent(invitadoParam);
-        openGuestElem.textContent = "Para: " + nombreInvitado;
-        cardGuestElem.textContent = nombreInvitado;
-        
         // Personalizar el mensaje de WhatsApp con el nombre
         const mensajeWA = `Hola, mi nombre es ${nombreInvitado} y confirmo mi asistencia a los XV años de Diana Greykelly.`;
         rsvpLink.href = `https://wa.me/+584142545124?text=${encodeURIComponent(mensajeWA)}`;
