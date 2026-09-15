@@ -17,8 +17,6 @@
   <title>XV Años - Diana Greykelly</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Montserrat:wght@300;400;600&amp;family=Cinzel:wght@400;600&amp;display=swap" rel="stylesheet">
   
-  <!-- Carga de la librería QRCode.js -->
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -31,7 +29,7 @@
     }
 
     /* ===== PANTALLA DE APERTURA VICTORIANA ===== */
-   #opening-screen {
+    #opening-screen {
       position: fixed;
       inset: 0;
       z-index: 1000;
@@ -42,24 +40,23 @@
       justify-content: center;
       transition: opacity 1.2s ease, transform 1.2s ease;
     }
-        
     #opening-screen.hidden {
       opacity: 0;
       transform: scale(1.1);
       pointer-events: none;
-    }    
-   
+    }
+
     .victorian-frame {
       width: 90%;
-      max-width: 480px;
+      max-width: 340px;
       border: 2px solid rgba(192, 192, 192, 0.3);
       border-radius: 4px;
       padding: 2.5rem 1.5rem;
       position: relative;
       background: rgba(255,255,255,0.03);
       box-shadow: 
-        0 0 60px rgba(15, 52, 96, 0.5),
-        inset 0 0 80px rgba(0,0,0,0.3);
+        0 0 40px rgba(15, 52, 96, 0.5),
+        inset 0 0 60px rgba(0,0,0,0.3);
     }
     .victorian-frame::before, .victorian-frame::after {
       content: '❦';
@@ -107,7 +104,16 @@
       margin-bottom: 1rem;
     }
 
-  
+    /* Estilo para el nombre del invitado */
+    .guest-welcome {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: #c9a84c;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 8px rgba(201, 168, 76, 0.3);
+    }
+
     .wax-seal-btn {
       width: 100px;
       height: 100px;
@@ -737,8 +743,8 @@
     .rsvp-btn:active {
       transform: translateY(0);
     }
-
-       #pages.dragging { transition: none !important; }
+    
+    #pages.dragging { transition: none !important; }
   </style>
 <base target="_blank">
 </head>
@@ -755,6 +761,7 @@
   <!-- ===== PANTALLA DE APERTURA ===== -->
   <div id="opening-screen">
     <div class="floating-particles-open" id="open-particles"><div class="particle" style="left: 36.9345%; width: 4.03336px; height: 4.03336px; animation-duration: 8.13218s; animation-delay: 0.34649s;"></div><div class="particle" style="left: 49.8506%; width: 3.12283px; height: 3.12283px; animation-duration: 13.5099s; animation-delay: 2.29827s;"></div><div class="particle" style="left: 70.0375%; width: 7.36614px; height: 7.36614px; animation-duration: 7.58171s; animation-delay: 1.76874s;"></div><div class="particle" style="left: 66.099%; width: 3.79798px; height: 3.79798px; animation-duration: 6.39271s; animation-delay: 1.87826s;"></div><div class="particle" style="left: 82.1373%; width: 3.53836px; height: 3.53836px; animation-duration: 7.19282s; animation-delay: 0.786482s;"></div><div class="particle" style="left: 16.0388%; width: 5.15167px; height: 5.15167px; animation-duration: 7.93877s; animation-delay: 2.45887s;"></div><div class="particle" style="left: 5.79803%; width: 7.13761px; height: 7.13761px; animation-duration: 6.35936s; animation-delay: 2.76758s;"></div><div class="particle" style="left: 76.5461%; width: 4.35292px; height: 4.35292px; animation-duration: 12.194s; animation-delay: 1.50824s;"></div><div class="particle" style="left: 71.3858%; width: 5.84449px; height: 5.84449px; animation-duration: 11.1813s; animation-delay: 4.53821s;"></div><div class="particle" style="left: 77.0225%; width: 3.66511px; height: 3.66511px; animation-duration: 11.9645s; animation-delay: 2.19861s;"></div><div class="particle" style="left: 79.9333%; width: 7.27838px; height: 7.27838px; animation-duration: 9.70337s; animation-delay: 4.28635s;"></div><div class="particle" style="left: 99.858%; width: 5.93979px; height: 5.93979px; animation-duration: 9.56652s; animation-delay: 0.593156s;"></div><div class="particle" style="left: 33.1217%; width: 7.1821px; height: 7.1821px; animation-duration: 11.0151s; animation-delay: 0.671991s;"></div><div class="particle" style="left: 96.9861%; width: 5.83692px; height: 5.83692px; animation-duration: 11.6566s; animation-delay: 0.344145s;"></div><div class="particle" style="left: 20.7345%; width: 4.35819px; height: 4.35819px; animation-duration: 11.0332s; animation-delay: 1.95425s;"></div></div>
+    
     <div class="victorian-frame">
       <div class="corner-ornament tl"></div>
       <div class="corner-ornament tr"></div>
@@ -909,7 +916,7 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           <div class="rsvp-card">
             <div class="rsvp-icon">🖋️</div>
             <p class="rsvp-title">Reservar</p>
-            <p class="rsvp-text">Por favor confirma tu asistencia antes del 10 de octubre.</p>
+            <p class="rsvp-text">Por favor confirma tu asistencia antes del 10 de octubre para ayudarnos con la organización.</p>
             <a class="rsvp-btn" id="rsvp-link" href="https://wa.me/+584142545124?text=Hola,%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Diana" target="_blank">
               <span>✓</span> Confirmar por WhatsApp
             </a>
@@ -922,15 +929,14 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           <p style="font-size:1.1rem;color:#c9a84c;font-style:italic;margin:0.3rem 0;font-weight:600;">Parroquia Antimano</p>
           <p style="font-size:0.95rem;color:#555;margin:0.3rem 0;">Salon de Eventos.</p>
           <p style="font-size:0.9rem;color:#777;opacity:0.9;line-height:1.5;margin:0.3rem 0;">Calle el algodonal sector Patria Eterna antes de llegar al hospital Jose Ignacio Baldó.</p>
-        </div>
-
+        </div>        
         <div class="footer-end"><p>¡Te esperamos!</p></div>
       </div>
     </div>
   </div>
 
   <script>
-    function(){
+    (function(){
       /* ===== LECTURA DEL NOMBRE DE INVITADO DESDE LA URL ===== */
       const urlParams = new URLSearchParams(window.location.search);
       const invitadoParam = urlParams.get('invitado');
@@ -947,8 +953,7 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
         const mensajeWA = `Hola, mi nombre es ${nombreInvitado} y confirmo mi asistencia a los XV años de Diana Greykelly.`;
         rsvpLink.href = `https://wa.me/+584142545124?text=${encodeURIComponent(mensajeWA)}`;
       }
-
-           /* ===== PARTÍCULAS ===== */
+      /* ===== PARTÍCULAS ===== */
       function createParticles(container, count, type) {
         for(let i=0; i<count; i++){
           const p = document.createElement('div');
@@ -976,7 +981,7 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
         openContainer.appendChild(p);
       }
 
-/* ===== AUDIO ===== */
+      /* ===== AUDIO ===== */
       const audio = document.getElementById('bg-music');
       const audioBtn = document.getElementById('audio-toggle');
       let isPlaying = false;
