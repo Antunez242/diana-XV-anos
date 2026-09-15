@@ -233,7 +233,7 @@
     /* ===== PÁGINA 1 CON MOVIMIENTO ===== */
     .page-1 {
       justify-content: center;
-      background-image: url(img/preview.jpg.jpeg);
+      background-image: url(diana.jpg);
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
@@ -243,7 +243,7 @@
       content: '';
       position: absolute;
       inset: -20px;
-      background-image: url(img/preview.jpg.jpeg);
+      background-image: url(diana.jpg);
       background-size: relative;
       background-position: center;
       background-repeat: no-repeat;
@@ -1011,6 +1011,64 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
   
 
   <script>
+        // Slider Logic
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const slider = document.getElementById('slider');
+    const dotsContainer = document.getElementById('dots-container');
+
+    // Create Navigation Dots
+    for (let i = 0; i < totalSlides; i++) {
+      let dot = document.createElement('div');
+      dot.className = `dot ${i === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateSlider();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlider();
+      }
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+    }
+
+    // Touch / Swipe Gestures Support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    document.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 50) nextSlide();
+      if (touchEndX > touchStartX + 50) prevSlide();
+    }
      // URL Parameters Logic for Personalization
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('n') || 'Apreciado Invitado';
