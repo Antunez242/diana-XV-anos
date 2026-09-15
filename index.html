@@ -639,12 +639,8 @@
 
   <!-- Cover / Envelope Screen -->
   <!-- ===== PANTALLA DE APERTURA ===== -->
-  <div id="opening-screen">
-    <div class="guest-badge" id="guest-container">
-        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
-        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
-      </div>
-    <div class="floating-particles-open" id="open-particles">
+  <div id="opening-screen"></div>
+      <div class="floating-particles-open" id="open-particles">
       <div class="particle" style="left: 36.9345%; width: 4.03336px; height: 4.03336px; animation-duration: 8.13218s; animation-delay: 0.34649s;"></div>
       <div class="particle" style="left: 49.8506%; width: 3.12283px; height: 3.12283px; animation-duration: 13.5099s; animation-delay: 2.29827s;"></div>
       <div class="particle" style="left: 70.0375%; width: 7.36614px; height: 7.36614px; animation-duration: 7.58171s; animation-delay: 1.76874s;"></div>
@@ -672,8 +668,10 @@
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
-
-      <div class="wax-seal-btn" id="open-btn">
+      <div class="guest-badge" id="guest-container">
+        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
+        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
+        <button class="btn-open" onclick="openInvitation()"></button>
         <span>Abrir<br>Invitación</span>
       </div>
     </div>
