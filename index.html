@@ -6,16 +6,15 @@
   
   <meta property="og:title" content="XV Años Diana Greykelly">
   <meta property="og:description" content="¡Tengo el honor de invitarte a celebrar mis XV años! 24 de Octubre de 2026.">
-  <meta property="og:image" content="https://jesusca0329.github.io/diana15/">
+  <meta property="og:image" content="https://antunez242.github.io/diana.jpg/">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://jesusca0329.github.io/diana15/">
+  <meta property="og:url" content="https://antunez242.github.io/diana.jpg/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="XV Años Diana Greykelly">
   <meta name="twitter:description" content="¡Tengo el honor de invitarte a celebrar mis XV años! 24 de Octubre de 2026.">
-  <meta name="twitter:image" content="https://jesusca0329.github.io/diana15/">
-  <title>Invitación XV Años - Diana Greykelly</title>
+  <meta name="twitter:image" content="https://antunez242.github.io/diana.jpg/">
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -45,6 +44,37 @@
       opacity: 0;
       transform: scale(1.1);
       pointer-events: none;
+    }
+    .cover-card {
+      border: 2px solid var(--gold);
+      padding: 40px 20px;
+      border-radius: 15px;
+      background: rgba(11, 37, 69, 0.85);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(212, 175, 55, 0.2);
+      max-width: 450px;
+      width: 90%;
+      position: relative;
+    }
+
+    .guest-badge {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--gold);
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+
+    .guest-name {
+      font-weight: 600;
+      color: var(--light-gold);
+      font-size: 1.1rem;
+    }
+
+    .guest-passes {
+      font-size: 0.85rem;
+      color: var(--light-blue);
+      margin-top: 3px;
     }
 
     .victorian-frame {
@@ -637,6 +667,11 @@
       <div class="open-sub">XV Años</div>
       
       <!-- Nombre de invitado dinámico en apertura -->
+      <div class="cover-card">
+      <div class="guest-badge" id="guest-container">
+        <div class="guest-name" id="guest-name-display">Cargando Invitado...</div>
+        <div class="guest-passes" id="guest-passes-display">Pases asignados</div>
+      </div>
       <div id="open-guest-name" class="guest-welcome"></div>
 
       <div class="wax-seal-btn" id="open-btn">
@@ -819,11 +854,11 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           </div>
         </div>
 
-      <!-- SLIDE 5: Ubicación & RSVP -->
-      <div class="slide content-slide">
+         <!-- SLIDE 5: Ubicación & RSVP -->
+      <div class="seq-section" id="sec-rsvp">
         <div class="card-container">
           <!-- Ubicación -->
-          <div class="gold-box">
+          <div class="seq-section" id="sec-direccion">
             <div class="box-header"><i class="fas fa-map-marker-alt"></i> Ubicación</div>
             <div class="box-text" style="line-height: 1.8;">
               <strong>Parroquia Antímano</strong><br>
@@ -834,7 +869,7 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
           </div>
 
           <!-- RSVP -->
-          <div class="gold-box">
+          <div class="seq-section" id="sec-rsvp">
             <div class="box-header">Reservar</div>
             <div class="box-text">
               Por favor confirma tu asistencia antes del <strong>10 de octubre</strong> para ayudarnos con la organización.
@@ -855,6 +890,20 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
   
 
   <script>
+     // URL Parameters Logic for Personalization
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get('n') || 'Apreciado Invitado';
+    const guestPasses = urlParams.get('p') || '1';
+
+    // Populate guest info
+    document.getElementById('guest-name-display').innerText = guestName;
+    document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
+
+    // WhatsApp Link Generation
+    const phone = "584142545124"; // Sustituir por el número de WhatsApp correspondiente
+    const message = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Diana Greykelly. Nombre: ${guestName} (${guestPasses} pase/s).`);
+    document.getElementById('whatsapp-link').href = `https://wa.me/${phone}?text=${message}`;
+    
     function createParticles(container, count, type) {
         for(let i=0; i<count; i++){
           const p = document.createElement('div');
@@ -881,19 +930,7 @@ Gracias por su paciencia, sus abrazos y sus palabras llenas de amor. Hoy celebro
         p.style.animationDelay = Math.random() * 5 + 's';
         openContainer.appendChild(p);
       }
-   // URL Parameters Logic for Personalization
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestName = urlParams.get('n') || 'Apreciado Invitado';
-    const guestPasses = urlParams.get('p') || '1';
-
-    // Populate guest info
-    document.getElementById('guest-name-display').innerText = guestName;
-    document.getElementById('guest-passes-display').innerText = `Pases reservados: ${guestPasses}`;
-
-    // WhatsApp Link Generation
-    const phone = "584142545124"; // Sustituir por el número de WhatsApp correspondiente
-    const message = encodeURIComponent(`¡Hola! Confirmo mi asistencia a los XV Años de Diana Greykelly. Nombre: ${guestName} (${guestPasses} pase/s).`);
-    document.getElementById('whatsapp-link').href = `https://wa.me/${phone}?text=${message}`;
+   
 
     // Audio Logic
     const audio = document.getElementById('bg-music');
