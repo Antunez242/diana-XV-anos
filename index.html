@@ -20,7 +20,21 @@
   <!-- Carga de la librería QRCode.js -->
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --primary-blue: #0b2545;
+      --secondary-blue: #134074;
+      --light-blue: #8da9c4;
+      --soft-bg-blue: #1d3557;
+      --gold: #d4af37;
+      --light-gold: #f4e285;
+      --white: #ffffff;
+      --text-light: #e0e1dd;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; 
+      font-family: 'Montserrat', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      }
     body {
       font-family: 'Montserrat', sans-serif;
       background: #0f0c29;
@@ -84,15 +98,15 @@
    
     .victorian-frame {
       width: 90%;
-      max-width: 340px;
+      max-width: 480px;
       border: 2px solid rgba(192, 192, 192, 0.3);
       border-radius: 4px;
       padding: 2.5rem 1.5rem;
       position: relative;
       background: rgba(255,255,255,0.03);
       box-shadow: 
-        0 0 40px rgba(15, 52, 96, 0.5),
-        inset 0 0 60px rgba(0,0,0,0.3);
+        0 0 60px rgba(15, 52, 96, 0.5),
+        inset 0 0 80px rgba(0,0,0,0.3);
     }
     .victorian-frame::before, .victorian-frame::after {
       content: '❦';
